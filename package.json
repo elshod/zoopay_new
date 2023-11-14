@@ -1,0 +1,26 @@
+{
+  "name": "zoopay",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.8",
+    "axios": "^1.6.1",
+    "pinia": "^2.1.7",
+    "quasar": "^2.14.0",
+    "vue": "^3.3.4",
+    "vue-cookies": "^1.8.3",
+    "vue-i18n": "^9.6.5",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@quasar/vite-plugin": "^1.6.0",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "sass": "^1.33.0",
+    "vite": "^4.4.11"
+  }
+}

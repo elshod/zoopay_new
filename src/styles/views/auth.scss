@@ -1,0 +1,45 @@
+@import '../colors.scss';
+
+.auth {
+    min-height: 100vh;
+    display: flex;
+    .poster {
+        height: 100vh;
+        width: 60vw;
+        background-color: $authbg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__content {
+        flex:1;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+
+    }
+    .logo {
+        font-size: 48px;
+        color: #000;
+        margin-bottom: 50px;
+    }
+    .links {
+        display: flex;
+        margin-bottom: 66px;
+        a {
+            padding: 11px 22px;
+            border-bottom: 2px solid #D1D1D1;
+            color: #6D6D6D;
+            font-weight: 700;
+            &.router-link-exact-active{
+                color: $green;
+                border-bottom-color: $green;
+            }
+        }
+    }
+    &__box {
+        max-width: 446px;
+        
+    }
+}
