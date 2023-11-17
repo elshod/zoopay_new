@@ -1,85 +1,63 @@
 <template>
   <q-layout view="hhh LpR fFf">
-    <q-header reveal elevated class="bg-primary text-white">
-      <q-toolbar>
-        
-
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar>
-          Title
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-header>
+    <header-part/>
 
     <q-drawer show-if-above  side="left" bordered>
       
         <q-scroll-area class="fit">
           <q-list>
 
-            <template v-for="(menuItem, index) in menuList" :key="index">
-              <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
+            <template v-for="(menuItem, index) in dashboard_menu" :key="index">
+              <q-item 
+                clickable 
+                :active="menuItem.name === currentRoute" 
+                :to="`/dashboard/${menuItem.path}`"
+                v-ripple>
                 <q-item-section avatar>
                   <q-icon :name="menuItem.icon" />
                 </q-item-section>
                 <q-item-section>
-                  {{ menuItem.label }}
+                  {{ menuItem.title }}
                 </q-item-section>
               </q-item>
-              <q-separator :key="'sep' + index"  v-if="menuItem.separator" />
+              <q-separator/>
             </template>
 
           </q-list>
         </q-scroll-area>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
+    <q-page-container >
+      <div class="q-pa-md">
+        <router-view />
+      </div>
     </q-page-container>
   </q-layout>
 </template>
 <script setup>
-import {ref} from 'vue'
+import headerPart from '../components/dashboard/header-part.vue'
 
-const menuList = ref([
-  {
-    icon: 'inbox',
-    label: 'Inbox',
-    separator: true
-  },
-  {
-    icon: 'send',
-    label: 'Outbox',
-    separator: false
-  },
-  {
-    icon: 'delete',
-    label: 'Trash',
-    separator: false
-  },
-  {
-    icon: 'error',
-    label: 'Spam',
-    separator: true
-  },
-  {
-    icon: 'settings',
-    label: 'Settings',
-    separator: false
-  },
-  {
-    icon: 'feedback',
-    label: 'Send Feedback',
-    separator: false
-  },
-  {
-    icon: 'help',
-    iconColor: 'primary',
-    label: 'Help',
-    separator: false
-  }
-])
+
+import {onMounted, ref,watch} from 'vue'
+import {useRoute} from 'vue-router'
+import {dashboard_menu} from '@/stores/utils/menu'
+
+const route = useRoute()
+const currentRoute = ref('')
+
+watch(
+  () => route.name,
+  () => {
+    currentRoute.value = route.name
+})
+
+import {userStore} from '@/stores/auth/user'
+const user_store = userStore()
+
+onMounted(()=>{
+  currentRoute.value = route.name
+  user_store.checkUser()
+})
 
 </script>
 <style lang="scss" scoped></style>

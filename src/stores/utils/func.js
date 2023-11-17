@@ -10,3 +10,9 @@ export const convertDate = (d,type = 'full') => {
     : type == 'date' ? `${addZero(date.getDate())}/${addZero(date.getMonth() + 1)}/${date.getFullYear()}`
     : ''
 }
+
+export const language = [
+    {label:'O`zbekcha',language:'uz'},
+    {label:'На русском',language:'ru'},
+    {label:'English',language:'en'},
+]

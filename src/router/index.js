@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DefaultLayout from '@/layouts/default-layout.vue'
+import { dashboard_menu } from '../stores/utils/menu'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,15 +39,8 @@ const router = createRouter({
       name: 'dashboard',
       component: () => import('@/layouts/dashboard-layout.vue'),
       children: [
-        {
-          path:'',
-          name:'home-dashboard',
-          component: () => import('@/views/dashboard/home-dashboard.vue'),
-          meta: {
-            roles: ['admin'],
-            title: 'Boshqaruv paneli'
-          }
-        }
+
+        ...dashboard_menu
       ]
     }
   ]

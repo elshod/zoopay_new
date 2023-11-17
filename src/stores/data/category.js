@@ -2,103 +2,110 @@ import {ref} from 'vue'
 import { defineStore } from 'pinia'
 
 import { apiStore } from '../utils/api'
-import { ElMessage } from 'element-plus'
+import { useQuasar } from 'quasar'
 import { loadingStore } from '../utils/loading'
 
-export const productStore = defineStore('productStore',()=>{
-    const products = ref([])
-    const products_count = ref(0)
+export const categoryStore = defineStore('categoryStore',()=>{
+    const categorys = ref([])
+    const categorys_count = ref(0)
     const loading_store = loadingStore()
     
+    const $q = useQuasar()
     const api = apiStore()
 
-    const get_all_products = async params => {
-        products.value = []
+    const get_all_categorys = async params => {
+        categorys.value = []
         loading_store.setLoading(true)
         let res = await api.get({
-            url: 'product',
+            url: 'category/all',
             params
         })
-        console.log(res.data)
-        products.value = [...res.data.products]
-        products_count.value = res.data.count
-        loading_store.setLoading(false)
+        if (res.status == 200){
+            console.log(res.data)
+            categorys.value = [...res.data.categories]
+            categorys_count.value = res.data.count
+            loading_store.setLoading(false)
+        }
     }
 
-    const new_product = async data => {
+    const new_category = async data => {
+        console.log(data)
         let res = await api.post({
-            url: 'product',
+            url: 'category',
             data
         })
 
-        products.value = [{...res.data},...products.value]
-        products_count.value += 1
+        categorys.value = [{...res.data},...categorys.value]
+        categorys_count.value += 1
 
-        if (products.value.length > 10){
-            products.value.pop()
+        if (categorys.value.length > 10){
+            categorys.value.pop()
         }
 
-        ElMessage({
-            type:'success',
-            message: 'Yangi mahsulot qo`shildi!'
+        $q.notify({
+            message: 'Yangi ma`lumot qo`shildi',
+            color: 'green-10'
         })
+        
     }
 
-    const get_product = async id => {
+    const get_category = async id => {
         return await api.get({
-            url: `product/${id}`
+            url: `category/${id}`
         })
     }
 
-    const save_product = async data => {
+    const save_category = async data => {
         let res = await api.put({
-            url : 'product',
+            url : 'category',
             data
         })
-        products.value = [...products.value.map(product => {
-            if (product._id == res.data._id) return {...res.data}
-            return product
+        categorys.value = [...categorys.value.map(category => {
+            if (category._id == res.data._id) return {...res.data}
+            return category
         })]
-        ElMessage({
-            type:'success',
-            message: 'Mahsulot yangilandi!'
+
+        $q.notify({
+            message: 'Ma`lumot yangilandi',
+            color: 'green-10'
         })
     }
 
     const change_status = async id => {
-        await api.get({url: `product/change/${id}`})
-        products.value = [...products.value.map(product => {
-            if (product._id == id) return {
-                ...product,
-                status: product.status == 1 ? 0 : 1
+        await api.get({url: `category/change/${id}`})
+        categorys.value = [...categorys.value.map(category => {
+            if (category._id == id) return {
+                ...category,
+                status: category.status == 1 ? 0 : 1
             }
-            return product
+            return category
         })]
-        ElMessage({
-            type:'success',
-            message: 'Mahsulot holati o`zgartirildi!'
+
+        $q.notify({
+            message: 'Ma`lumot holati o`zgartirildi',
+            color: 'green-10'
         })
     }
 
-    const delete_product = async id => {
-        await api.del({url:`product/${id}`})
-        products.value = [...products.value.filter(product => product._id != id)]
-        ElMessage({
-            type:'warning',
-            message: 'Mahsulot o`chirildi!'
+    const delete_category = async id => {
+        await api.del({url:`category/${id}`})
+        categorys.value = [...categorys.value.filter(category => category._id != id)]        
+        $q.notify({
+            message: 'Ma`lumot o`chirildi',
+            color: 'yellow-10'
         })
-        products_count.value -= 1
+        categorys_count.value -= 1
     }
 
     return {
-        products,
-        products_count,
+        categorys,
+        categorys_count,
 
-        get_all_products,
-        new_product,
-        get_product,
-        save_product,
+        get_all_categorys,
+        new_category,
+        get_category,
+        save_category,
         change_status,
-        delete_product
+        delete_category
     }
 })

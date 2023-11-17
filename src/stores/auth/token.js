@@ -5,7 +5,7 @@ export const tokenStore = defineStore('tokenStore',()=>{
     const token = ref('')
 
     const setToken = (value) => {
-        cookies.set('zoopay-token',value)
+        cookies.set('hamkasb-token',value)
         token.value = value
     }
 

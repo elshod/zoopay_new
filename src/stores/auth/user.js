@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import {ref} from 'vue'
 
 import { apiStore } from "../utils/api";
-import { tokenStore } from "./token";
 
 import router from '../../router'
 import { useQuasar } from 'quasar'
@@ -11,15 +10,15 @@ import cookies from "vue-cookies"
 
 export const userStore = defineStore('userStore',()=>{
     const api = apiStore()
-    const token_store = tokenStore()
     const user = ref({})
     const $q = useQuasar()
     const checkUser = async () => {
-        if (cookies.isKey('zoopay-token')){
-            token_store.setToken(cookies.get('zoopay-token'))
+        if (cookies.isKey('zoopay-token')){   
+            console.log(cookies.get('zoopay-token'))
             let res = await api.get({
                 url: 'auth/checkuser'
             })
+            console.log(res.data)
             user.value = {...res.data}
         } else {
             router.push({name:'login'})
@@ -35,13 +34,17 @@ export const userStore = defineStore('userStore',()=>{
         if (res.status == 200){
             user.value = {...res.data.user}
             cookies.set('zoopay-user',{...res.data.user})
-            token_store.setToken(res.data.token.slice())
-            $q.notify({
-                message: 'Xush kelibsiz',
-                color: 'green-8',
-                icon:'info'
-            })
-            router.push('/dashboard')
+            cookies.set('zoopay-token',res.data.token)            
+            console.log(res.data)
+            console.log(cookies.get());
+            setTimeout(()=>{
+                $q.notify({
+                    message: 'Xush kelibsiz',
+                    color: 'green-8',
+                    icon:'info'
+                })
+                router.push('/dashboard')
+            },500)
         }
     }
 
@@ -49,8 +52,7 @@ export const userStore = defineStore('userStore',()=>{
         let res = await api.post({
             url: 'auth/reg',
             data
-        })
-        console.log(res.data)
+        })        
         if (res.data == 'success'){
             $q.notify({
                 message: 'Ro`yhatdan o`tdingiz. Endi tizimga kiring',

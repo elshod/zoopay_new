@@ -1,8 +1,7 @@
-import { defineStore, storeToRefs } from "pinia";
+import { defineStore } from "pinia";
 import { url } from "./env";
 import axios from "axios";
 
-import { tokenStore } from "../auth/token";
 import { useQuasar } from 'quasar'
 
 import cookies from "vue-cookies"
@@ -11,15 +10,12 @@ import router from "../../router";
 export const apiStore = defineStore('apiStore',() =>{
 
     const $q = useQuasar()
-
-    const token_store = tokenStore()
-    const {token} = storeToRefs(token_store)
-    
+        
     const get = async payload => {
         return await axios.get(`${url}/${payload.url}`,{
             params: payload.params,
             headers: {
-                'Authorization': `Bearer ${token.value}`
+                'Authorization': `Bearer ${cookies.get('zoopay-token')}`
             }
         }).catch(e => {
             console.log(e)
@@ -38,7 +34,7 @@ export const apiStore = defineStore('apiStore',() =>{
     const post = async payload => {
         return await axios.post(`${url}/${payload.url}`,payload.data,{
             headers: {
-                'Authorization': `Bearer ${token.value}`
+                'Authorization': `Bearer ${cookies.get('zoopay-token')}`
             }
         }).catch(e => {
             console.log(e)
@@ -63,7 +59,7 @@ export const apiStore = defineStore('apiStore',() =>{
     const put = async payload => {
         return await axios.put(`${url}/${payload.url}`,payload.data,{
             headers: {
-                'Authorization': `Bearer ${token.value}`
+                'Authorization': `Bearer ${cookies.get('zoopay-token')}`
             }
         }).catch(e => {
             console.log(e.response.data)
@@ -83,7 +79,7 @@ export const apiStore = defineStore('apiStore',() =>{
     const del = async payload => {
         return await axios.delete(`${url}/${payload.url}`,{
             headers: {
-                'Authorization': `Bearer ${token.value}`
+                'Authorization': `Bearer ${cookies.get('zoopay-token')}`
             }
         }).catch(e => {
             console.log(e)
