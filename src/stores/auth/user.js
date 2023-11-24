@@ -14,11 +14,9 @@ export const userStore = defineStore('userStore',()=>{
     const $q = useQuasar()
     const checkUser = async () => {
         if (cookies.isKey('zoopay-token')){   
-            console.log(cookies.get('zoopay-token'))
             let res = await api.get({
                 url: 'auth/checkuser'
             })
-            console.log(res.data)
             user.value = {...res.data}
         } else {
             router.push({name:'login'})
@@ -34,9 +32,7 @@ export const userStore = defineStore('userStore',()=>{
         if (res.status == 200){
             user.value = {...res.data.user}
             cookies.set('zoopay-user',{...res.data.user})
-            cookies.set('zoopay-token',res.data.token)            
-            console.log(res.data)
-            console.log(cookies.get());
+            cookies.set('zoopay-token',res.data.token)
             setTimeout(()=>{
                 $q.notify({
                     message: 'Xush kelibsiz',

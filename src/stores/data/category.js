@@ -13,19 +13,36 @@ export const categoryStore = defineStore('categoryStore',()=>{
     const $q = useQuasar()
     const api = apiStore()
 
-    const get_all_categorys = async params => {
+    const get_categorys = params => {
         categorys.value = []
         loading_store.setLoading(true)
-        let res = await api.get({
-            url: 'category/all',
+        api.get({
+            url: 'category/',
             params
-        })
-        if (res.status == 200){
-            console.log(res.data)
+        }).then(res => {  
+            console.log(res.data)          
             categorys.value = [...res.data.categories]
             categorys_count.value = res.data.count
+        }).finally(()=>{
             loading_store.setLoading(false)
-        }
+        })
+        
+    }
+
+    const get_all_categorys = params => {
+        categorys.value = []
+        loading_store.setLoading(true)
+        api.get({
+            url: 'category/all',
+            params
+        }).then(res => {  
+            console.log(res.data)          
+            categorys.value = [...res.data.categories]
+            categorys_count.value = res.data.count
+        }).finally(()=>{
+            loading_store.setLoading(false)
+        })
+        
     }
 
     const new_category = async data => {
@@ -101,6 +118,7 @@ export const categoryStore = defineStore('categoryStore',()=>{
         categorys,
         categorys_count,
 
+        get_categorys,
         get_all_categorys,
         new_category,
         get_category,

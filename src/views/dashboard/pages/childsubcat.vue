@@ -1,19 +1,19 @@
 <template>
     <div class="row wrap justify-between items-center content-start q-mb-md">
-        <h5>Kategoriyalar ro'yhati</h5>
+        <h5>Toifalar ro'yhati</h5>
         <div>
             <q-btn 
                 icon="add" 
                 unelevated 
                 color="green-10" 
                 @click="data.toggle = true" 
-                label="Yangi kategoriya"/>
+                label="Yangi toifa"/>
         </div>
     </div>
-    <category-table 
+    <childsubcat-table 
         @edit="handleEdit"
         />
-    <category-dialog 
+    <childsubcat-dialog 
         :toggle="data.toggle" 
         :id="data.id"
         :edit="data.edit"
@@ -23,11 +23,14 @@
 
 <script setup>
 import {ref, onMounted } from 'vue'
-import categoryTable from '@/components/dashboard/category/category-table.vue'
-import categoryDialog from '@/components/dashboard/category/category-dialog.vue'
-import {categoryStore} from '@/stores/data/category'
+import childsubcatTable from '@/components/dashboard/childsubcat/childsubcat-table.vue'
+import childsubcatDialog from '@/components/dashboard/childsubcat/childsubcat-dialog.vue'
+import {childsubcatStore} from '@/stores/data/childsubcat'
 
-const store = categoryStore()
+import {subcategoryStore} from '@/stores/data/subcategory'
+const subcategory_store = subcategoryStore()
+
+const store = childsubcatStore()
 
 const data = ref({
     toggle: false,
@@ -52,7 +55,8 @@ const close = () => {
 }
 
 onMounted(()=>{
-    store.get_all_categorys()
+    store.get_all_childsubcats()
+    subcategory_store.get_all_subcategorys({limit:0})
 })
 
 </script>

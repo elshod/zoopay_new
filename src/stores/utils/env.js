@@ -13,7 +13,6 @@ export const statusList = [
     },
 ]
 
-export const units = ['kg','l','gr','ml','dona','t']
 
 
 

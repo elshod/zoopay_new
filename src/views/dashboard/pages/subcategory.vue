@@ -1,6 +1,6 @@
 <template>
     <div class="row wrap justify-between items-center content-start q-mb-md">
-        <h5>Kategoriyalar ro'yhati</h5>
+        <h5>Subkategoriyalar ro'yhati</h5>
         <div>
             <q-btn 
                 icon="add" 
@@ -10,10 +10,10 @@
                 label="Yangi kategoriya"/>
         </div>
     </div>
-    <category-table 
+    <subcategory-table 
         @edit="handleEdit"
         />
-    <category-dialog 
+    <subcategory-dialog 
         :toggle="data.toggle" 
         :id="data.id"
         :edit="data.edit"
@@ -23,11 +23,14 @@
 
 <script setup>
 import {ref, onMounted } from 'vue'
-import categoryTable from '@/components/dashboard/category/category-table.vue'
-import categoryDialog from '@/components/dashboard/category/category-dialog.vue'
-import {categoryStore} from '@/stores/data/category'
+import subcategoryTable from '@/components/dashboard/subcategory/subcategory-table.vue'
+import subcategoryDialog from '@/components/dashboard/subcategory/subcategory-dialog.vue'
+import {subcategoryStore} from '@/stores/data/subcategory'
 
-const store = categoryStore()
+import {categoryStore} from '@/stores/data/category'
+const category_store = categoryStore()
+
+const store = subcategoryStore()
 
 const data = ref({
     toggle: false,
@@ -52,7 +55,8 @@ const close = () => {
 }
 
 onMounted(()=>{
-    store.get_all_categorys()
+    store.get_all_subcategorys()
+    category_store.get_all_categorys({limit:0})
 })
 
 </script>

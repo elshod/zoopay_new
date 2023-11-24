@@ -1,8 +1,7 @@
 const addZero = v => v < 10 ? `0${v}` : v 
 
 
-export const convertDate = (d,type = 'full') => {
-    console.log(d)
+export const convertDate = (d,type = 'full') => {    
     let date = new Date(d)
 
     return type == 'full' ? `${addZero(date.getHours())}:${addZero(date.getMinutes())} 
@@ -13,6 +12,5 @@ export const convertDate = (d,type = 'full') => {
 
 export const language = [
     {label:'O`zbekcha',language:'uz'},
-    {label:'На русском',language:'ru'},
-    {label:'English',language:'en'},
+    {label:'На русском',language:'ru'}
 ]

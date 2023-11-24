@@ -8,7 +8,7 @@
         :pagination="{
             rowsPerPage: 20,
             page,
-            rowsNumber: categorys_count
+            rowsNumber: subcategorys_count
         }"
         :loading="loading"
     >
@@ -17,27 +17,22 @@
                 <q-td key="index" :props="props">
                     {{ props.row.index + 1 }}
                 </q-td>
-                <q-td :auto-width="true" key="categories_uz" :props="props">
-                    {{ props.row.categories?.find(item => item.language == 'uz')?.title || '' }}
+                <q-td :auto-width="true" key="subcategories_uz" :props="props">
+                    {{ props.row.subcategories?.find(item => item.language == 'uz').title || '' }}
                 </q-td>
-                <q-td :auto-width="true" key="categories_ru" :props="props">
-                    {{ props.row.categories?.find(item => item.language == 'ru')?.title || '' }}
+                <q-td :auto-width="true" key="subcategories_ru" :props="props">
+                    {{ props.row.subcategories?.find(item => item.language == 'ru').title || '' }}
                 </q-td>
-                <q-td :auto-width="true" key="categories_en" :props="props">
-                    {{ props.row.categories?.find(item => item.language == 'en')?.title || '' }}
+                <q-td :auto-width="true" key="subcategories_en" :props="props">
+                    {{ props.row.subcategories?.find(item => item.language == 'en').title || '' }}
+                </q-td>
+                <q-td key="category" :props="props">
+                    {{ props.row.category }}
                 </q-td>
                 <q-td key="createdAt" :props="props">
                     {{ convertDate(props.row.createdAt) }}
                 </q-td>
-                <q-td key="img" :props="props">
-                    <q-img
-                        v-if="props.row.img"
-                        :src="`${url}/${props.row.img}`"
-                        spinner-color="white"
-                        style="height: 60px; width:60px; object-fit:cover"
-                    />
-                </q-td>
-                <q-td key="status" :props="props">
+                <q-td key="createdAt" :props="props">
                     <q-btn 
                         @click="changeStatus(props.row._id)"
                         size="10px"
@@ -77,7 +72,7 @@
       <q-pagination
         v-model="page"
         color="grey-8"
-        :max="Math.ceil(categorys_count / 20)"
+        :max="Math.ceil(subcategorys_count / 20)"
         :min="1"
         size="sm"
         @update:model-value="handlePagination"
@@ -102,7 +97,7 @@
 <script setup>
 import {computed, ref} from 'vue'
 import {storeToRefs} from 'pinia'
-import {categoryStore} from '@/stores/data/category'
+import {subcategoryStore} from '@/stores/data/subcategory'
 import {convertDate} from '@/stores/utils/func'
 import {url} from '@/stores/utils/env'
 import {loadingStore} from '@/stores/utils/loading'
@@ -112,8 +107,8 @@ const {loading} = storeToRefs(loading_store)
 
 const emits = defineEmits(['edit'])
 
-const store = categoryStore()
-const {categorys,categorys_count} = storeToRefs(store)
+const store = subcategoryStore()
+const {subcategorys,subcategorys_count} = storeToRefs(store)
 const changeStatus = (_id) => {
     store.change_status(_id)
 }
@@ -129,7 +124,7 @@ const openDialog = (_id) => {
 const page = ref(1)
 
 const remove = () => {
-    store.delete_category(id.value)
+    store.delete_subcategory(id.value)
 }
 
 const edit = (id) => {
@@ -138,13 +133,13 @@ const edit = (id) => {
 
 const handlePagination = (val) => {
     page.value = val
-    store.get_all_categorys({page: page.value})
+    store.get_all_subcategorys({page: page.value})
 }
 
 
 const list = computed(()=>{
     
-    return categorys.value.map((val,index) => {
+    return subcategorys.value.map((val,index) => {
         val.index = index  + ((page.value - 1) * 20)
         return val
     })
@@ -158,29 +153,29 @@ const columns = [
         headerStyle: 'width:100px'
     },
     {
-        name:'categories_uz',
-        label:'Kategoriy nomi',
+        name:'subcategories_uz',
+        label:'Subkategoriy nomi',
         align:'left',
     },
     {
-        name:'categories_ru',
-        label:'Название категории',
+        name:'subcategories_ru',
+        label:'Название подкатегории',
         align:'left',
     },
     {
-        name:'categories_en',
-        label:'Category name',
+        name:'subcategories_en',
+        label:'Subcategory name',
+        align:'left',
+    },
+    {
+        name:'category',
+        label:'Kategoriya nomi',
         align:'left',
     },
     {
         name:'createdAt',
         label:'Yaratilgan vaqti',
         field:'createdAt',
-        align:'left',
-    },
-    {
-        name:'img',
-        label:'Rasm/ikonka',
         align:'left',
         headerStyle: 'width: 200px',
     },
@@ -195,7 +190,7 @@ const columns = [
         name:'btns',
         label:'',
         field:'btns',
-        align:'right',
+        align:'left',
         headerStyle: 'width: 200px',
     }
 ]
