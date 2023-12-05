@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import DefaultLayout from '@/layouts/default-layout.vue'
-import { dashboard_menu } from '../stores/utils/menu'
+import { createRouter, createWebHistory } from 'vue-router';
+import DefaultLayout from '@/layouts/default-layout.vue';
+import { dashboard_menu } from '../stores/utils/menu';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,39 +11,41 @@ const router = createRouter({
       component: DefaultLayout,
       children: [
         {
-          path:'',
+          path: '',
           name: 'home',
-          component: () => import('@/views/default/homeView.vue')
-        }
-      ]
-    },    
+          component: () => import('@/views/default/homeView.vue'),
+        },
+        {
+          path: 'subcat/:id',
+          name: 'subcat_notice',
+          component: () => import('@/views/default/subcat-notice.vue'),
+        },
+      ],
+    },
     {
       path: '/auth',
       name: 'auth',
       component: () => import('@/layouts/auth-layout.vue'),
       children: [
         {
-          path:'',
+          path: '',
           name: 'login',
-          component: () => import('@/views/auth/login-page.vue')
+          component: () => import('@/views/auth/login-page.vue'),
         },
         {
-          path:'reg',
+          path: 'reg',
           name: 'reg',
-          component: () => import('@/views/auth/reg-page.vue')
+          component: () => import('@/views/auth/reg-page.vue'),
         },
-      ]
+      ],
     },
     {
-      path:'/dashboard',
+      path: '/dashboard',
       name: 'dashboard',
       component: () => import('@/layouts/dashboard-layout.vue'),
-      children: [
+      children: [...dashboard_menu],
+    },
+  ],
+});
 
-        ...dashboard_menu
-      ]
-    }
-  ]
-})
-
-export default router
+export default router;

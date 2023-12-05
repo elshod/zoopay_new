@@ -11,6 +11,7 @@
             rowsNumber: subcategorys_count
         }"
         :loading="loading"
+        :dark="theme == 1"
     >
         <template v-slot:body="props">            
             <q-tr :props="props">
@@ -23,9 +24,7 @@
                 <q-td :auto-width="true" key="subcategories_ru" :props="props">
                     {{ props.row.subcategories?.find(item => item.language == 'ru').title || '' }}
                 </q-td>
-                <q-td :auto-width="true" key="subcategories_en" :props="props">
-                    {{ props.row.subcategories?.find(item => item.language == 'en').title || '' }}
-                </q-td>
+
                 <q-td key="category" :props="props">
                     {{ props.row.category }}
                 </q-td>
@@ -107,6 +106,10 @@ const {loading} = storeToRefs(loading_store)
 
 const emits = defineEmits(['edit'])
 
+import { pageStore } from '@/stores/utils/page'
+const page_store = pageStore()
+const { theme } = storeToRefs(page_store)
+
 const store = subcategoryStore()
 const {subcategorys,subcategorys_count} = storeToRefs(store)
 const changeStatus = (_id) => {
@@ -162,11 +165,7 @@ const columns = [
         label:'Название подкатегории',
         align:'left',
     },
-    {
-        name:'subcategories_en',
-        label:'Subcategory name',
-        align:'left',
-    },
+
     {
         name:'category',
         label:'Kategoriya nomi',

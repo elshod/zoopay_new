@@ -23,6 +23,18 @@
         gap:15px;
         font-size: 18px;
         font-weight: 700;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 0px;
+        transition: 0.3s linear;
+        &.active {
+            border-radius: 15px;
+            background-color: rgb(94, 30, 184);
+            color: #fff;
+            .img {
+                border-radius: unset;
+            }
+        }
     }
     .img {
         width: 100px;
@@ -33,6 +45,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: 0.3s linear;
         img {
             width: 70px;
             aspect-ratio: 1/1;

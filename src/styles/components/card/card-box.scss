@@ -41,3 +41,27 @@
         color: #000;
     }
 }
+
+
+@media (max-width:1024px){
+
+}
+
+@media(max-width:600px){
+    .card {
+        font-size: 10px;
+        .img {
+            height: 160px;
+            .q-btn {
+                right: 5px
+            }
+        }
+        .title {
+            font-size: 14px;
+            line-height: 22px;
+        }
+        .price {
+            font-size: 16px;
+        }
+    }
+}

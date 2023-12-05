@@ -1,0 +1,27 @@
+.subcats {
+  background-color: #efefef;
+  padding: 20px;
+  border:1px solid #efefef;
+  display: flex;
+}
+.box {
+  width: 20%;
+  padding: 15px;
+  a {
+    display: flex;
+    align-items: center;
+    gap:5px;
+    &:hover {
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+@media (max-width:1024px) {
+  .box {
+    width: 50%;
+  }
+}

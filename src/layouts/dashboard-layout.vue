@@ -1,10 +1,10 @@
 <template>
-  <q-layout view="hhh LpR fFf">
+  <q-layout view="lHh lpr lfr">
     <header-part/>
 
-    <q-drawer show-if-above  side="left" bordered>
-      
-        <q-scroll-area class="fit">
+    <q-drawer show-if-above  class="drawer" side="left" bordered>
+        <router-link to="/" class="logo"><span>ZOO</span>PAY</router-link>
+        
           <q-list>
 
             <template v-for="(menuItem, index) in dashboard_menu" :key="index">
@@ -19,12 +19,11 @@
                 <q-item-section>
                   {{ menuItem.title }}
                 </q-item-section>
-              </q-item>
-              <q-separator/>
+              </q-item>              
             </template>
 
           </q-list>
-        </q-scroll-area>
+        
     </q-drawer>
 
     <q-page-container >
@@ -60,4 +59,7 @@ onMounted(()=>{
 })
 
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss">
+@import '@/styles/layouts/dashboard.scss';
+
+</style>

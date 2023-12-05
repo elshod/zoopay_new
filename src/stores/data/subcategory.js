@@ -102,15 +102,20 @@ export const subcategoryStore = defineStore('subcategoryStore',()=>{
         subcategorys_count.value -= 1
     }
 
-    return {
-        subcategorys,
-        subcategorys_count,
+    const childsubcat_by_subcat = async (id) => {
+      return api.get({ url: `subcategory/bysubcat/${id}` });
+    };
 
-        get_all_subcategorys,
-        new_subcategory,
-        get_subcategory,
-        save_subcategory,
-        change_status,
-        delete_subcategory
-    }
+    return {
+      subcategorys,
+      subcategorys_count,
+
+      get_all_subcategorys,
+      new_subcategory,
+      get_subcategory,
+      save_subcategory,
+      change_status,
+      delete_subcategory,
+      childsubcat_by_subcat,
+    };
 })

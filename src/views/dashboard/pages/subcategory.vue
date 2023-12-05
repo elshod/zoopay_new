@@ -1,6 +1,5 @@
 <template>
     <div class="row wrap justify-between items-center content-start q-mb-md">
-        <h5>Subkategoriyalar ro'yhati</h5>
         <div>
             <q-btn 
                 icon="add" 
@@ -30,6 +29,10 @@ import {subcategoryStore} from '@/stores/data/subcategory'
 import {categoryStore} from '@/stores/data/category'
 const category_store = categoryStore()
 
+import { pageStore } from '@/stores/utils/page'
+const page_store = pageStore()
+const title = ref('Turkumlar ro`yhati')
+
 const store = subcategoryStore()
 
 const data = ref({
@@ -55,6 +58,7 @@ const close = () => {
 }
 
 onMounted(()=>{
+    page_store.set_page_title(title.value)
     store.get_all_subcategorys()
     category_store.get_all_categorys({limit:0})
 })

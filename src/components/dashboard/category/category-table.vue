@@ -11,6 +11,7 @@
             rowsNumber: categorys_count
         }"
         :loading="loading"
+        :dark="theme == 1"
     >
         <template v-slot:body="props">            
             <q-tr :props="props">
@@ -22,9 +23,6 @@
                 </q-td>
                 <q-td :auto-width="true" key="categories_ru" :props="props">
                     {{ props.row.categories?.find(item => item.language == 'ru')?.title || '' }}
-                </q-td>
-                <q-td :auto-width="true" key="categories_en" :props="props">
-                    {{ props.row.categories?.find(item => item.language == 'en')?.title || '' }}
                 </q-td>
                 <q-td key="createdAt" :props="props">
                     {{ convertDate(props.row.createdAt) }}
@@ -107,6 +105,11 @@ import {convertDate} from '@/stores/utils/func'
 import {url} from '@/stores/utils/env'
 import {loadingStore} from '@/stores/utils/loading'
 
+import { pageStore } from '@/stores/utils/page'
+const page_store = pageStore()
+const { theme } = storeToRefs(page_store)
+
+
 const loading_store = loadingStore()
 const {loading} = storeToRefs(loading_store)
 
@@ -161,17 +164,14 @@ const columns = [
         name:'categories_uz',
         label:'Kategoriy nomi',
         align:'left',
+       
     },
     {
         name:'categories_ru',
         label:'Название категории',
         align:'left',
     },
-    {
-        name:'categories_en',
-        label:'Category name',
-        align:'left',
-    },
+
     {
         name:'createdAt',
         label:'Yaratilgan vaqti',

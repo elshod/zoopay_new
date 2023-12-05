@@ -4,6 +4,7 @@
         <q-btn 
             flat
             icon="favorite_border"
+            round
         /> 
         <img src="https://i.pinimg.com/564x/64/50/86/6450862d4aad802a05db1ed26bc0f766.jpg" alt="">
     </div>
@@ -22,6 +23,6 @@
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/styles/components/card/card-box.scss';
 </style>

@@ -19,6 +19,12 @@
         </div>
         <div class="btns">
           <q-btn 
+          class="home"
+          flat
+          color="white"
+          icon="home"/>
+          <q-btn 
+          class="favorite"
           flat
           color="white"
           icon="favorite_border">
@@ -27,6 +33,7 @@
           
           <q-btn 
           flat
+          class="message"
           color="white"
           icon="message">
             <q-badge floating color="red">22</q-badge>
@@ -34,20 +41,31 @@
 
           <q-btn 
           flat
+          class="person"
           color="white"
           icon="person"/>
 
+          <q-btn 
+            unelevated
+            class="add"
+            color="white"
+            text-color="black"
+            icon="add"
+            label="Yangi e`lon"
+          />
+
+          <q-btn 
+              unelevated
+              round
+              class="add_mobile"
+              color="white"
+              text-color="black"
+              icon="add"
+            />
 
 
         </div>
 
-        <q-btn 
-          unelevated
-          color="white"
-          text-color="black"
-          icon="add"
-          label="Yangi e`lon"
-        />
 
         
 

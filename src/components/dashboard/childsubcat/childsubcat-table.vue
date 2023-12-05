@@ -11,6 +11,7 @@
             rowsNumber: childsubcats_count
         }"
         :loading="loading"
+        :dark="theme == 1"
     >
         <template v-slot:body="props">            
             <q-tr :props="props">
@@ -98,6 +99,10 @@ import {childsubcatStore} from '@/stores/data/childsubcat'
 import {convertDate} from '@/stores/utils/func'
 import {url} from '@/stores/utils/env'
 import {loadingStore} from '@/stores/utils/loading'
+
+import { pageStore } from '@/stores/utils/page'
+const page_store = pageStore()
+const { theme } = storeToRefs(page_store)
 
 const loading_store = loadingStore()
 const {loading} = storeToRefs(loading_store)

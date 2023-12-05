@@ -1,6 +1,5 @@
 <template>
     <div class="row wrap justify-between items-center content-start q-mb-md">
-        <h5>Kategoriyalar ro'yhati</h5>
         <div>
             <q-btn 
                 icon="add" 
@@ -27,6 +26,10 @@ import categoryTable from '@/components/dashboard/category/category-table.vue'
 import categoryDialog from '@/components/dashboard/category/category-dialog.vue'
 import {categoryStore} from '@/stores/data/category'
 
+import { pageStore } from '@/stores/utils/page'
+const page_store = pageStore()
+const title = ref('Kategoriyalar ro`yhati')
+
 const store = categoryStore()
 
 const data = ref({
@@ -52,6 +55,7 @@ const close = () => {
 }
 
 onMounted(()=>{
+    page_store.set_page_title(title.value)
     store.get_all_categorys()
 })
 

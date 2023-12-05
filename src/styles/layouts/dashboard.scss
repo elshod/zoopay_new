@@ -1,0 +1,42 @@
+@import '../colors.scss';
+aside{
+  padding: 20px;
+  background-color: #fff;
+  .logo {
+    font-size: 32px;
+    font-weight: 400;
+    color: #3c3c3c;
+    margin-bottom: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    span {
+      color: $green;
+      font-weight: 700;
+    }
+  }
+  .q-router-link--active{
+    background-color: $green;
+    color: #fff;
+    .q-item__section--main,
+    .q-icon{
+      color: #fff;
+    }
+  }
+  .q-item {
+    margin: 10px 0;
+    border-radius: 10px;
+  }
+}
+
+body.body--dark {
+  aside {
+    background-color: #1d1d1d;
+    .logo {
+      color: #fff;
+    }
+    span {
+      color: #fff;
+    }
+  }
+}
