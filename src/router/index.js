@@ -16,10 +16,20 @@ const router = createRouter({
           component: () => import('@/views/default/homeView.vue'),
         },
         {
+          path:'fav',
+          name:'fav',
+          component: () => import('@/views/default/favsPage.vue')
+        },
+        {
           path: 'subcat/:id',
           name: 'subcat_notice',
           component: () => import('@/views/default/subcat-notice.vue'),
         },
+        {
+          path:'notice/:id',
+          name:'notice',
+          component: () => import('@/views/default/notice-page.vue')
+        }
       ],
     },
     {

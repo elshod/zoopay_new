@@ -13,22 +13,13 @@ export const addStore = defineStore('addStore', () => {
   const $q = useQuasar();
   const api = apiStore();
 
-  const get_adds = (params) => {
-    adds.value = [];
-    loading_store.setLoading(true);
-    api
-      .get({
-        url: 'add/',
+  const get_adds = async (params) => {
+    console.log(params)
+    return await api.get({
+        url: 'add',
         params,
-      })
-      .then((res) => {
-        adds.value = [...res.data.adds];
-        adds_count.value = res.data.count;
-      })
-      .finally(() => {
-        loading_store.setLoading(false);
-      });
-  };
+    })      
+  }
 
   const get_all_adds = (params) => {
     adds.value = [];
@@ -120,7 +111,23 @@ export const addStore = defineStore('addStore', () => {
       color: 'yellow-10',
     });
     adds_count.value -= 1;
-  };
+  }
+
+  const noref_favs = async data => {
+    console.log(data)
+    return await api.get({
+      url: 'favouite/noreg',
+      params: {
+        data
+      }
+    })
+  }
+
+  const view_add = async (id) => {
+    return await api.get({
+      url: `add/view/${id}`
+    })
+  }
 
   return {
     adds,
@@ -133,5 +140,7 @@ export const addStore = defineStore('addStore', () => {
     save_add,
     change_status,
     delete_add,
+    noref_favs,
+    view_add
   };
 });

@@ -27,8 +27,9 @@
           class="favorite"
           flat
           color="white"
+          to="/fav"
           icon="favorite_border">
-            <q-badge floating color="red">2</q-badge>
+            <q-badge v-if="favs.length > 0" floating color="red">{{favs.length}}</q-badge>
           </q-btn>
           
           <q-btn 
@@ -74,10 +75,25 @@
   </header>
 </template>
 
-<script>
-export default {
+<script setup>
+import { onMounted, ref, watch } from 'vue'
+import cookies from 'vue-cookies'
+import {pageStore} from '@/stores/utils/page'
+import { storeToRefs } from 'pinia'
+const page_store = pageStore()
+const {favs} = storeToRefs(page_store)
 
-}
+
+const fav_count = ref(0)
+
+onMounted(()=>{
+  if (cookies.isKey('zoopay-fav')){
+    page_store.set_favs()
+  }
+})
+
+
+
 </script>
 
 <style lang="scss" scoped>

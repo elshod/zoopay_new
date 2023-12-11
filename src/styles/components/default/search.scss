@@ -4,9 +4,24 @@
     &__box {
         background-color: #fff;
         display: flex;
+        position: relative;
         .q-field {
             padding:0px 15px;
             flex:1;
         }
     }
+    &__result {
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        overflow: hidden;
+        max-height: 0;
+        transition: 0.3s linear;
+        background-color: #fff;
+        z-index: 1;
+        &.active {
+            max-height: 700px;
+        }
+    }
+
 }
