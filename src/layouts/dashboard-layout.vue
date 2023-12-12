@@ -55,7 +55,7 @@ const user_store = userStore()
 
 onMounted(()=>{
   currentRoute.value = route.name
-  user_store.checkUser()
+  user_store.checkUser('admin')
 })
 
 </script>

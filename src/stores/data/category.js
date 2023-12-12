@@ -20,7 +20,7 @@ export const categoryStore = defineStore('categoryStore',()=>{
             url: 'category/',
             params
         }).then(res => {  
-            console.log(res.data)          
+            console.log(res.data);
             categorys.value = [...res.data.categories]
             categorys_count.value = res.data.count
         }).finally(()=>{
@@ -36,7 +36,6 @@ export const categoryStore = defineStore('categoryStore',()=>{
             url: 'category/all',
             params
         }).then(res => {  
-            console.log(res.data)          
             categorys.value = [...res.data.categories]
             categorys_count.value = res.data.count
         }).finally(()=>{
@@ -115,6 +114,7 @@ export const categoryStore = defineStore('categoryStore',()=>{
     }
 
     const subcategories_by_cat = async id => {
+        console.log(id);
         return api.get({url:`category/bycat/${id}`})
     }
 

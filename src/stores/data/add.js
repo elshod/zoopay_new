@@ -14,7 +14,6 @@ export const addStore = defineStore('addStore', () => {
   const api = apiStore();
 
   const get_adds = async (params) => {
-    console.log(params)
     return await api.get({
         url: 'add',
         params,
@@ -30,7 +29,6 @@ export const addStore = defineStore('addStore', () => {
         params,
       })
       .then((res) => {
-        console.log(res.data);
         adds.value = [...res.data.adds];
         adds_count.value = res.data.count;
       })

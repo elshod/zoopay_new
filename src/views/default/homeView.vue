@@ -29,7 +29,6 @@ onMounted(async ()=>{
     limit:16
   })
   list.value = [...res.data]
-  console.log(res.data)
 })
 
 

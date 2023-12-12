@@ -20,6 +20,7 @@ const router = createRouter({
           name:'fav',
           component: () => import('@/views/default/favsPage.vue')
         },
+        
         {
           path: 'subcat/:id',
           name: 'subcat_notice',
@@ -55,6 +56,23 @@ const router = createRouter({
       component: () => import('@/layouts/dashboard-layout.vue'),
       children: [...dashboard_menu],
     },
+    {
+      path:'/user',
+      name:'user',
+      component: () => import('@/layouts/user-layout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'userdashboard',
+          component: () => import('@/views/user/user-homepage.vue'),
+        },
+        {
+          path:'newadd',
+          name:'newadd',
+          component: () => import('@/views/default/new_add.vue')
+        },
+      ]
+    }
   ],
 });
 

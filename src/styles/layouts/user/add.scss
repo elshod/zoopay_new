@@ -1,0 +1,54 @@
+@import '../../colors.scss';
+
+.category {
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-self: flex-start;
+        gap:15px;
+        .box {
+            display: flex;
+            flex-direction: column;
+            width: 140px;
+            align-items: center;
+            gap:10px;
+            padding: 10px;
+            border: 1px solid #e7e7e7;
+            border-radius: 10px;
+            transition: 0.3s linear;            
+            cursor: pointer;
+            &:hover,
+            &.active{
+                background-color: $green;
+                color: #fff;
+                border-color: $green;
+            }
+            &.align-center{
+                justify-content: center;
+            }
+        }
+    }
+}
+
+.linear {
+    text-align: center;
+    border: 1px solid #e7e7e7;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    &.active {
+        border-color: $green;
+    }
+    &__container {
+        max-width: 700px;
+        margin: auto;
+        text-align: left;
+    }
+}
+
+.subcategory__list {
+    display: flex;
+    justify-content: center;
+    align-self: flex-start;
+    gap:15px;
+}

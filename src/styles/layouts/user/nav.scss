@@ -1,0 +1,23 @@
+@import '../../colors.scss';
+
+nav {
+    background-color: #efefef;
+    
+    .container {
+        display: flex;
+        gap:10px;
+    }
+    a {
+        padding: 15px;
+        color: #757575;
+        font-weight: 700;
+        &.router-link-active{
+            color: $green;
+            border-top: 3px solid $green;
+        }
+        &:hover {
+            background-color: $green;
+            color: #fff;
+        }
+    }
+}

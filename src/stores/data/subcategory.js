@@ -103,19 +103,19 @@ export const subcategoryStore = defineStore('subcategoryStore',()=>{
     }
 
     const childsubcat_by_subcat = async (id) => {
-      return api.get({ url: `subcategory/bysubcat/${id}` });
+        return api.get({ url: `subcategory/bysubcat/${id}` });
     };
 
     return {
-      subcategorys,
-      subcategorys_count,
+        subcategorys,
+        subcategorys_count,
 
-      get_all_subcategorys,
-      new_subcategory,
-      get_subcategory,
-      save_subcategory,
-      change_status,
-      delete_subcategory,
-      childsubcat_by_subcat,
+        get_all_subcategorys,
+        new_subcategory,
+        get_subcategory,
+        save_subcategory,
+        change_status,
+        delete_subcategory,
+        childsubcat_by_subcat,
     };
 })

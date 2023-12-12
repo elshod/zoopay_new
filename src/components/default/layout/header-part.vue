@@ -53,6 +53,7 @@
             text-color="black"
             icon="add"
             label="Yangi e`lon"
+            to="/user/newadd"
           />
 
           <q-btn 
