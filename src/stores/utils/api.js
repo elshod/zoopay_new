@@ -39,13 +39,13 @@ export const apiStore = defineStore('apiStore',() =>{
         }).catch(e => {
             console.log(e)
             $q.notify({
-                message: e.response.data,
+                message: e.response?.data,
                 color: 'red-5',
                 icon: 'announcement'
             })
             if (e.response.status == 401){
                 $q.notify({
-                    message: e.response.data,
+                    message: e.response?.data,
                     color: 'red-5',
                     icon: 'announcement'
                 })

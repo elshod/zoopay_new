@@ -41,8 +41,7 @@
                     emit-value map-options
                     option-value="value" option-label="label"
                     v-model="val.priceName"
-                    :options="[{label: 'so`m',value: 1},
-                    {label: 'dollar',value: 2}]"
+                    :options="priceList"
                     label="Valyuta turi"                    
                   />
                 </div>
@@ -174,19 +173,11 @@ const store = addStore()
 
 const editorRef = ref()
 
-const priceTypeList = [
-  {label: 'narh',value: 1},
-  {label: 'tekin',value: 2},
-  {label: 'almashish',value: 3}
-]
-const addTypeList = [
-  {label: 'Xususiy',value: 1},
-  {label: 'Biznes',value: 2},  
-]
-const statusTypeList = [
-  {label: 'yangi',value: 1},
-  {label: 'b/u',value: 2},  
-]
+import {useAddlibStore} from '@/stores/utils/addlib'
+const addlib_store = useAddlibStore()
+
+const {priceTypeList,addTypeList,statusTypeList,priceList} = storeToRefs(addlib_store)
+
 // const priceTypeList = ['narh','tekin','almashish']
 
 

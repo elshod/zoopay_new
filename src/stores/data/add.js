@@ -29,13 +29,21 @@ export const addStore = defineStore('addStore', () => {
         params,
       })
       .then((res) => {
+        console.log(res.data);
         adds.value = [...res.data.adds];
         adds_count.value = res.data.count;
       })
       .finally(() => {
         loading_store.setLoading(false);
       });
-  };
+  }
+
+  const create_add = async data => {
+    return await api.post({
+      url: 'add/create',
+      data
+    })
+  }
 
   const new_add = async (data) => {
     let res = await api.post({
@@ -131,6 +139,7 @@ export const addStore = defineStore('addStore', () => {
     adds,
     adds_count,
 
+    create_add,
     get_adds,
     get_all_adds,
     new_add,
