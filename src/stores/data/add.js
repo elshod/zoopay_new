@@ -20,6 +20,18 @@ export const addStore = defineStore('addStore', () => {
     })      
   }
 
+  const get_mine_adds = async (params) => {
+    adds.value = []
+    await api.get({
+      url: 'add/mine',
+      params
+    })
+    .then(res => {
+      console.log(res.data)
+      adds.value = [...res.data]
+    })
+  }
+
   const get_all_adds = (params) => {
     adds.value = [];
     loading_store.setLoading(true);
@@ -135,10 +147,18 @@ export const addStore = defineStore('addStore', () => {
     })
   }
 
+  const remove_file = async (path) => {
+    return api.get({
+      url:`add/removefile`,
+      params: {path}
+    })
+  }
+
   return {
     adds,
     adds_count,
 
+    get_mine_adds,
     create_add,
     get_adds,
     get_all_adds,
@@ -148,6 +168,7 @@ export const addStore = defineStore('addStore', () => {
     change_status,
     delete_add,
     noref_favs,
-    view_add
+    view_add,
+    remove_file
   };
 });

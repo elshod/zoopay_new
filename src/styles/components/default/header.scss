@@ -19,7 +19,6 @@ header {
     .add_mobile{
         display: none;
     }
-     
 }
 
 
@@ -68,6 +67,9 @@ header {
         }
         .message {
             order:4
+        }
+        .add {
+            display: none;
         }
         .person {
             order:5;

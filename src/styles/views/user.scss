@@ -1,0 +1,24 @@
+.user {
+    padding: 40px 0;
+    .info {
+        background-color: #fff;
+        height: 100%;
+        border-radius: 15px;
+        padding: 15px;
+    }
+    img {
+        width: 150px;
+        max-width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .name {
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .phone{
+        font-size: 18px;
+    }
+}

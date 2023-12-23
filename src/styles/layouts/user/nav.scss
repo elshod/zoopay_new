@@ -7,17 +7,28 @@ nav {
         display: flex;
         gap:10px;
     }
+    
+    .logout,
     a {
         padding: 15px;
         color: #757575;
         font-weight: 700;
-        &.router-link-active{
+        border-top: 3px solid #efefef;
+        &.router-link-exact-active{
             color: $green;
-            border-top: 3px solid $green;
+            border-top-color:$green;
         }
         &:hover {
+            border-top-color:$green;
             background-color: $green;
             color: #fff;
+        }
+    }
+    .logout {
+        margin-left: auto;
+        &:hover{
+            background: unset;
+            color: unset;
         }
     }
 }

@@ -53,3 +53,22 @@
         }
     }
 }
+
+
+
+@media (max-width:768px){
+    .category {
+        &__list {
+            flex-wrap: nowrap;
+            overflow: auto;
+            
+            margin: 0;
+            justify-content: flex-start;
+        }
+        &__col {
+            padding: 5px;
+            min-width: 180px;
+            text-align: center;
+        }
+    }
+}

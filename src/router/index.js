@@ -69,7 +69,22 @@ const router = createRouter({
         {
           path:'newadd',
           name:'newadd',
-          component: () => import('@/views/default/new_add.vue')
+          component: () => import('@/views/user/new_add.vue')
+        },
+        {
+          path:'adds',
+          name:'adds',
+          component: () => import('@/views/user/user-adds.vue')
+        },
+        {
+          path:'settings',
+          name:'userSettings',
+          component: () => import('@/views/user/user-settings.vue')
+        },
+        {
+          path:'fav',
+          name:'userFav',
+          component: () => import('@/views/default/favsPage.vue')
         },
       ]
     }

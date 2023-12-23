@@ -52,6 +52,7 @@ const card = ref({})
 const route = useRoute()
 
 const getData = async () => {
+    console.log(route.params)
     if (route.params?.id){
         id.value = route.params.id
         let res = await store.view_add(id.value)

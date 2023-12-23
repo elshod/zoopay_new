@@ -2,7 +2,7 @@
   <main>
     <search-panel />
     <category-list/>
-    <div class="last">
+    <div class="last q-mb-xl">
       <div class="container">
         <h4 class="text-center q-mb-xl">Ohirgi e'lonlar</h4>
         <card-list :list="list"/>

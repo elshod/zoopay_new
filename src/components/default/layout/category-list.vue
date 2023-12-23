@@ -1,7 +1,7 @@
 <template>
     <div class="category">
         <div class="container">
-            <div class="title">Bo'limlar</div>
+            <div class="title">{{  t('home.category.title') }}</div>
             <div class="category__list">
                 <div class="category__col" v-for="cat of categorys" :key="cat._id">
                     <div @click="getSubcategory(cat._id)" :class="`box ${cat_id == cat._id ? 'active' : ''}`">
@@ -24,6 +24,8 @@ import { onMounted, ref } from 'vue'
 import { url } from '@/stores/utils/env'
 import subcategoryList from './subcategory-list.vue'
 
+import { useI18n } from 'vue-i18n'
+const {t} = useI18n()
 
 const store = categoryStore()
 
