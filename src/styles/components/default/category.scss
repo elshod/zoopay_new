@@ -14,7 +14,9 @@
         justify-content: center;
     }
     &__col {
-        padding: 15px 30px;        
+        padding: 15px 20px;  
+        max-width: 20%;
+        text-align: center;      
     }
     .box {
         display: flex;
@@ -47,9 +49,9 @@
         justify-content: center;
         transition: 0.3s linear;
         img {
-            width: 70px;
+            width: 100px;            
             aspect-ratio: 1/1;
-            object-fit: contain;
+            object-fit: cover;
         }
     }
 }

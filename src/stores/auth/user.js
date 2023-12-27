@@ -12,6 +12,8 @@ export const userStore = defineStore('userStore',()=>{
     const api = apiStore()
     const user = ref({})
     const $q = useQuasar()
+    const person = ref({})
+
     const checkUser = async (role) => {
         if (cookies.isKey('zoopay-token')){   
             let res = await api.get({
@@ -37,7 +39,7 @@ export const userStore = defineStore('userStore',()=>{
             url: 'auth/login',
             data
         })
-
+        console.log(res.data)
         if (res.status == 200){
             user.value = {...res.data.user}
             
@@ -79,13 +81,23 @@ export const userStore = defineStore('userStore',()=>{
     }
 
 
+    const info_me = async () => {
+        let res = await api.get({
+            url:'add/me'
+        })
+        person.value = {...res.data}
+        console.log(res.data)
+    }
+
 
 
     return {
         user,
+        person,
 
         checkUser,
         reg,
-        login
+        login,
+        info_me
     }
 })

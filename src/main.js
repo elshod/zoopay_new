@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import VueCookies from 'vue-cookies'
 import { createI18n } from 'vue-i18n'
+import VueSplide from '@splidejs/vue-splide';
 
 import { messages } from './i18n/message'
 const i18n = createI18n({
@@ -12,6 +13,7 @@ const i18n = createI18n({
 })
 
 import { Quasar, Notify } from 'quasar'
+import '@splidejs/vue-splide/css';
 
 import '@quasar/extras/roboto-font/roboto-font.css'
 import '@quasar/extras/material-icons/material-icons.css'
@@ -44,6 +46,7 @@ app.use(Quasar,{
 
 app.use(VueCookies, { expires: '1d'})
 app.use(i18n)
+app.use( VueSplide )
 app.use(createPinia())
 app.use(router)
 

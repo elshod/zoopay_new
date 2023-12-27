@@ -31,48 +31,22 @@
                         </router-link>
                     </div>
                 </div>
-                <div class="col-12 col-md-3" v-for="item of 3" :key="item">
+                <div class="col-12 col-md-9">
                     <div class="row q-col-gutter-lg">
-                        <div class="col-md-12 col-6">
+                        <div class="col-md-4 col-6" 
+                        v-for="menu of footer_menu" 
+                        :key="menu._id">
                             <div class="links">
-                                <router-link to='/' class="category">Ish</router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
+                                <router-link to='/' class="category">{{menu.title}}</router-link>
+                                <router-link 
+                                    to='/' 
+                                    class="subcategory"
+                                    v-for="sub of menu.subCategories"
+                                    :key="sub._id"
+                                    >
+                                    {{sub.title}}
                                 </router-link>
                             </div>
-                        </div>
-                        <div class="col-md-12 col-6">
-                            <div class="links">
-                                <router-link to='/' class="category">Ish</router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                                <router-link to='/' class="subcategory">
-                                    Bolallar dunyosi
-                                </router-link>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -82,7 +56,18 @@
 </template>
 
 <script setup>
+import {apiStore} from '@/stores/utils/api'
+import { onMounted, ref } from 'vue'
+const api = apiStore()
 
+const footer_menu = ref([])
+
+onMounted(async()=>{
+    let res = await api.get({
+        url:'category/footer'
+    })
+    footer_menu.value = [...res.data]
+})
 
 </script>
 

@@ -21,7 +21,7 @@
         <router-link :to="`/notice/${card._id}`" class="title">
           {{card.title}}
         </router-link>
-        <div class="price">{{card.price}} {{card.priceType == 1 ? 'so`m' : '$'}}</div>
+        <div class="price">{{card.price?.toLocaleString() || 0}} {{card.priceType == 1 ? 'so`m' : '$'}}</div>
         <div class="location">{{card.address}}</div>
         <div class="date">{{card.createdAt}}</div>
     </div>

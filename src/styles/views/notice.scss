@@ -35,10 +35,31 @@
 
     .author {
         margin-top: 0;
+        .stat {
+            display: flex;
+            gap:10px;
+            color: #737373;
+            margin-bottom: 10px;
+        }
         .name {
             font-size: 18px;
             text-transform: uppercase;
             font-weight: 700;
+        }
+        &+.author {
+            margin-top: 20px;
+        }
+    }
+
+    .attrs {
+        display: flex;
+        gap:10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        .att {
+            border:1px solid #e7e7e7;
+            padding: 4px 10px;
+            border-radius: 5px;
         }
     }
 
