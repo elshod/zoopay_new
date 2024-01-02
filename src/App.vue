@@ -5,6 +5,9 @@ import cookies from "vue-cookies"
 import { useRoute } from 'vue-router';
 const page_store = pageStore()
 
+import {useI18n} from 'vue-i18n'
+const {t} = useI18n()
+
 
 onMounted(()=>{
   if (cookies.isKey('zoopay-theme')){

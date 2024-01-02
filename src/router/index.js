@@ -22,9 +22,9 @@ const router = createRouter({
         },
         
         {
-          path: 'subcat/:id',
-          name: 'subcat_notice',
-          component: () => import('@/views/default/subcat-notice.vue'),
+          path: 'notices',
+          name: 'notices',
+          component: () => import('@/views/default/all-notice.vue'),
         },
         {
           path:'notice/:id',

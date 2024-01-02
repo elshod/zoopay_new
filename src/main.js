@@ -15,7 +15,8 @@ const i18n = createI18n({
 import { Quasar, Notify } from 'quasar'
 import '@splidejs/vue-splide/css';
 
-import '@quasar/extras/roboto-font/roboto-font.css'
+import '@quasar/extras/roboto-font-latin-ext/roboto-font-latin-ext.css'
+
 import '@quasar/extras/material-icons/material-icons.css'
 import '@quasar/extras/bootstrap-icons/bootstrap-icons.css'
 import 'quasar/src/css/index.sass'
@@ -49,5 +50,6 @@ app.use(i18n)
 app.use( VueSplide )
 app.use(createPinia())
 app.use(router)
+
 
 app.mount('#app')

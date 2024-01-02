@@ -234,8 +234,9 @@ const getSubcategory = id => {
     }
     subcategory_list.value = []
     childsubcat_list.value = []
-    category_store.subcategories_by_cat(id)
+    category_store.subcategories_by_cat({id})
         .then(res => {
+            console.log(res.data)
             subcategory_list.value = [...res.data]
         })
 }

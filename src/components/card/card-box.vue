@@ -21,7 +21,7 @@
         <router-link :to="`/notice/${card._id}`" class="title">
           {{card.title}}
         </router-link>
-        <div class="price">{{card.price?.toLocaleString() || 0}} {{card.priceType == 1 ? 'so`m' : '$'}}</div>
+        <div class="price">{{card.price?.toLocaleString() || 0}} {{card.priceType == 1 ? t('utils.currency') : '$'}}</div>
         <div class="location">{{card.address}}</div>
         <div class="date">{{card.createdAt}}</div>
     </div>
@@ -39,6 +39,8 @@ const page_store = pageStore()
 const $q = useQuasar()
 const {favs} = storeToRefs(page_store)
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const props = defineProps(['card'])
 const emits = defineEmits('changeList')

@@ -13,6 +13,15 @@ export const addStore = defineStore('addStore', () => {
   const $q = useQuasar();
   const api = apiStore();
 
+  const all_notice = async params => {
+    let res = await api.get({
+      url: 'add',
+      params
+    })
+    adds.value = [...res.data.data]
+    adds_count.value = res.data.count
+  }
+
   const get_adds = async (params) => {
     return await api.get({
         url: 'add',
@@ -158,6 +167,7 @@ export const addStore = defineStore('addStore', () => {
     adds,
     adds_count,
 
+    all_notice,
     get_mine_adds,
     create_add,
     get_adds,

@@ -5,7 +5,7 @@
         <q-input
           borderless
           v-model="title"
-          placeholder="Nima qidiryapsiz"
+          :placeholder="t('search.label')"
           :dense="false"
           clearable
           @update:model-value="searching"
@@ -39,6 +39,9 @@ import { addStore } from "@/stores/data/add";
 import {url} from '@/stores/utils/env'
 import { useRouter } from "vue-router";
 const store = addStore();
+
+import {useI18n} from 'vue-i18n'
+const {t} = useI18n()
 
 const title = ref("");
 const list = ref([])

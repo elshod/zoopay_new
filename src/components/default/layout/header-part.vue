@@ -21,7 +21,10 @@
 
           <q-btn flat to="/user" class="person" color="white" icon="person" />
 
-          <q-btn unelevated class="add" color="white" text-color="black" icon="add" :label="t('header.new_add')"
+          <q-btn 
+            unelevated class="add" color="white" 
+            text-color="black" icon="add" 
+            :label="t('header.new_add')"
             to="/user/newadd" />
 
           <q-btn unelevated round class="add_mobile" color="white" text-color="black" icon="add" />
@@ -46,15 +49,19 @@ const page_store = pageStore()
 const { favs } = storeToRefs(page_store)
 
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-const language = useI18n()
+const { t, locale } = useI18n()
 const l = ref('')
 const changeLang = lang => {
   cookies.set('zoopay-lang', lang)
-  language.locale.value = lang
+  locale.value = lang
   l.value = lang
 }
 
+watch(locale,
+  () => {
+    console.log(locale.value)
+  }
+)
 
 
 const fav_count = ref(0)
@@ -63,7 +70,7 @@ onMounted(() => {
   if (cookies.isKey('zoopay-lang')) {
     changeLang(cookies.get('zoopay-lang'))
   } else {
-    l.value = language.locale.value
+    l.value = locale.value
   }
   if (cookies.isKey('zoopay-fav')) {
     page_store.set_favs()

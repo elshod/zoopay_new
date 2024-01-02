@@ -4,9 +4,7 @@
             <div class="row d-flex">
                 <div class="col-12 col-md-3">
                     <div class="logo">Zoopay</div>
-                    <div class="info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint quaerat ab placeat
-                        vitae tempora pariatur, minus soluta quos quas, iusto nobis enim iste commodi dolores, quasi dolorem
-                        rem debitis? Laborum?</div>
+                    <div class="info">{{ t('footer.text') }}</div>
                     <div class="social q-mb-md">
                         <a href="#" target="_blank">
                             <q-icon color="white" size="24px" class="q-mr-md" name="bi-facebook" />
@@ -19,15 +17,15 @@
                         </a>
                     </div>
                     <div class="links">
-                        <router-link to='/' class="category">Biz haqimizda</router-link>
+                        <router-link to='/' class="category">{{ t('footer.about') }}</router-link>
                         <router-link to='/' class="subcategory">
-                            Savol-javoblar
+                            {{ t('footer.faq') }}
                         </router-link>
                         <router-link to='/' class="subcategory">
-                            Yangiliklar
+                            {{ t('footer.news') }}
                         </router-link>
                         <router-link to='/' class="subcategory">
-                            Aloqa
+                            {{ t('footer.contact') }}
                         </router-link>
                     </div>
                 </div>
@@ -57,16 +55,33 @@
 
 <script setup>
 import {apiStore} from '@/stores/utils/api'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 const api = apiStore()
+
+import { useI18n } from 'vue-i18n'
+const { t, locale } = useI18n()
+
+watch(locale,
+    () => {
+        get_footer_menu()
+    }
+)
+
+const get_footer_menu = async () => {
+    let res = await api.get({
+        url:'category/footer',
+        params: {
+            language: locale.value
+        }
+    })
+    footer_menu.value = [...res.data]
+}
+
 
 const footer_menu = ref([])
 
 onMounted(async()=>{
-    let res = await api.get({
-        url:'category/footer'
-    })
-    footer_menu.value = [...res.data]
+    get_footer_menu()
 })
 
 </script>

@@ -113,22 +113,25 @@ export const categoryStore = defineStore('categoryStore',()=>{
         categorys_count.value -= 1
     }
 
-    const subcategories_by_cat = async id => {
-        console.log(id);
-        return api.get({url:`category/bycat/${id}`})
+    const subcategories_by_cat = async ({id,params}) => {
+        
+        return api.get({
+            url:`category/bycat/${id}`,
+            params
+        })
     }
 
     return {
-      categorys,
-      categorys_count,
+        categorys,
+        categorys_count,
 
-      get_categorys,
-      get_all_categorys,
-      new_category,
-      get_category,
-      save_category,
-      change_status,
-      delete_category,
-      subcategories_by_cat,
+        get_categorys,
+        get_all_categorys,
+        new_category,
+        get_category,
+        save_category,
+        change_status,
+        delete_category,
+        subcategories_by_cat,
     };
 })

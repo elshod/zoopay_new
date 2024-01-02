@@ -4,7 +4,7 @@
     <category-list/>
     <div class="last q-mb-xl">
       <div class="container">
-        <h4 class="text-center q-mb-xl">Ohirgi e'lonlar</h4>
+        <h4 class="text-center q-mb-xl"></h4>
         <card-list :list="list"/>
       </div>
     </div>
@@ -28,7 +28,8 @@ onMounted(async ()=>{
   let res = await store.get_adds({
     limit:16
   })
-  list.value = [...res.data]
+  
+  list.value = [...res.data.data]
 })
 
 
