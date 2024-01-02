@@ -11,7 +11,7 @@
                 <div class="price">
                     {{card.price?.toLocaleString() || 0}}
 
-                    {{card.priceType == 1 ? 'so`m' : '$'}}
+                    {{card.priceType == 1 ? t('utils.currency') : '$'}}
                 </div>
             </div>
             <div class="info row q-col-gutter-md">
@@ -31,7 +31,7 @@
                                 <b>{{attr.value}}</b>                                
                             </div>
                         </div>
-                        <h6>E'lon tasnifi</h6>
+                        <h6>{{ t('notice.text') }}</h6>
                         <div class="text" v-html="card.text">
 
                         </div>
@@ -49,11 +49,12 @@
                                 {{card.createdAt}}
                             </span>
                         </div>
-                        E'lon muallifi
+                        {{ t('notice.author') }}
+                        
                         <div class="name q-mb-sm">{{card.user?.name}}</div>
                         <hr>
                         <p class="q-mt-sm">
-                            <b>Murojat uchun</b>
+                            <b>{{ t('notice.call') }}</b>
                         </p>
                         <q-btn 
                         :label="card.user?.login" 
@@ -62,12 +63,12 @@
                         @click="callMe()"
                         text-color="white"/>
                         <p class="q-mt-sm">
-                            <b>Manzil</b>
+                            <b>{{ t('notice.address') }}</b>
                         </p>
                         {{card.address}}
                     </div>
                     <div class="author q-mt-lg" v-if="card.userAdds?.length > 0">
-                        <div class="q-mb-md"><b>Muallifning boshqa e'lonlari</b></div>
+                        <div class="q-mb-md"><b>{{ t('notice.user_notices') }}</b></div>
                         <Splide :options="{ 
                             type:'loop',
                             rewind: true,
@@ -82,7 +83,7 @@
             </div>
                 
             <div class="others" v-if="card.sameCatAdds?.length > 0">
-                <h6 class="q-mb-md">Boshqa e'lonlar</h6>
+                <h6 class="q-mb-md">{{ t('notice.others') }}</h6>
                 <Splide :options="{ 
                     type:'loop',
                     rewind: true,
@@ -118,6 +119,8 @@ import {addStore} from '@/stores/data/add'
 import {url} from '@/stores/utils/env'
 const store = addStore()
 
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const id = ref('')
 const card = ref({})

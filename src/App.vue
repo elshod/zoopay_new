@@ -19,8 +19,7 @@ onMounted(()=>{
 const route = useRoute()
 
 
-watch(
-  ()=>route.name,
+watch(route,
   ()=>{
     window.scroll({
       top: 0, 

@@ -35,9 +35,22 @@
                         v-for="menu of footer_menu" 
                         :key="menu._id">
                             <div class="links">
-                                <router-link to='/' class="category">{{menu.title}}</router-link>
                                 <router-link 
-                                    to='/' 
+                                    :to="{
+                                        name:'notices',
+                                        query: {
+                                            category: menu._id
+                                        }
+                                    }" 
+                                class="category">{{menu.title}}</router-link>
+                                <router-link 
+                                    :to="{
+                                        name:'notices',
+                                        query: {
+                                            category: menu._id,
+                                            subcategory:sub._id
+                                        }
+                                    }" 
                                     class="subcategory"
                                     v-for="sub of menu.subCategories"
                                     :key="sub._id"

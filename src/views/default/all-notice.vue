@@ -2,11 +2,27 @@
   <div class="notices">
     <div class="container q-mb-lg">
       <h4 class="title text-center q-mt-lg">{{ title }}</h4>
-      <div class="row q-col-gutter-md">
+      <div class="row q-col-gutter-md" >
         <div class="col-12 col-md-4">
-          <div class="filters" v-if="subcategories.length > 0">
-            <div class="item">
-              <div class="name">Turkumlar</div>
+          <div class="filters" >
+            <div class="head">
+              <div class="name">{{ t('filter.title') }}</div>
+              <q-btn 
+                :label="t('filter.reset')" 
+                :to="{
+                  name:'notices', 
+                    query: {
+                      category:query_list.category,
+                    }
+                }"
+                unelevated 
+                icon="close"
+                class="bg-grey-3"
+                size="10px"
+                />
+            </div>
+            <div class="item" v-if="subcategories.length > 0">
+              <div class="name">{{ t('filter.category') }}</div>
               <div class="row q-gutter-sm">
                   <q-btn 
                   v-for="sub of subcategories"
@@ -16,9 +32,12 @@
                   :class="{
                     'bg-green': query_list?.subcategory == sub._id
                   }"
-                  @click="()=>{
-                    query_list.subcategory = sub._id
-                    get_data()
+                  :to="{
+                    name:'notices', 
+                    query: {
+                      ...query_list,
+                      subcategory: sub._id
+                    }
                   }"
                   :outline="query_list?.subcategory !== sub._id"
                   :color="`${query_list.subcategory == sub._id ? 'white' : 'black'}`"
@@ -26,13 +45,61 @@
                 />
               </div>
             </div>
+            <div class="item" v-if="childsubcats.length > 0">
+              <div class="name">{{ t('filter.childsubcats') }}</div>
+              <div class="row q-gutter-sm">
+                  <q-btn 
+                  v-for="child of childsubcats"
+                  :key="child._id"
+                  :label="child.title"
+                  unelevated
+                  :class="{
+                    'bg-green': query_list?.childsubcat == child._id
+                  }"
+                  :to="{
+                    name:'notices', 
+                    query: {
+                      ...query_list,
+                      childsubcat: child._id
+                    }
+                  }"
+                  :outline="query_list?.childsubcat !== child._id"
+                  :color="`${query_list.childsubcat == child._id ? 'white' : 'black'}`"
+                  size="12px"
+                />
+              </div>
+            </div>
+
+            <div class="item" v-if="atributs.length > 0">
+              <div class="name">{{ t('filter.atributs') }}</div>
+              <div class="q-mb-md" v-for="atribut of atributs" :key="atribut._id">
+                  <q-select 
+                    outlined 
+                    v-model="atribut.value" 
+                    :options="atribut.values" 
+                    :label="atribut.title"
+                    v-if="atribut.type == 'select'" />
+                  
+                    <q-input 
+                    outlined 
+                    v-model="atribut.value" 
+                    :label="atribut.title"                        
+                    v-if="atribut.type == 'input'" 
+                  />
+              </div>
+            </div>
           </div>
-          <q-btn label="Filterlarni tozalash" @click="clear_filter()" unelevated class="bg-orange q-mt-lg"/>
+          
         </div>
-        <div class="col-12 col-md-8">
-          <card-list :list="adds" :limit_class="'col-md-4'"/>
+        <div class="col-12 col-md-8" >
+          <card-list :list="adds" v-if="adds.length > 0" :limit_class="'col-md-4'"/>
+          <div class="row text-center" v-if="adds.length == 0 && no_notice">
+            <h3>Xozircha bu bo'limda e'lonlar yo'q</h3>
+          </div>
         </div>
+        
       </div>
+      
     </div>
   </div>
 </template>
@@ -46,6 +113,7 @@ import cardList from '@/components/card/card-list.vue'
 import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
 
+const no_notice = ref(false)
 const title = ref('')
 const page = ref(1)
 
@@ -63,8 +131,21 @@ const get_category = async id => {
 
     let res_subcat = await category_store.subcategories_by_cat({id,params: {language:locale.value}})
     subcategories.value = [...res_subcat.data]
-
   }
+}
+
+
+import {subcategoryStore} from '@/stores/data/subcategory'
+const subcategory_store = subcategoryStore()
+const atributs = ref([])
+const childsubcats = ref([])
+
+const get_sub_filter  = async subcategory_id => {
+  query_list.value.subcategory = subcategory_id
+  let res = await subcategory_store.childsubcat_by_subcat(subcategory_id,{language: locale.value})
+  atributs.value = [...res.data.atributs]
+  childsubcats.value = [...res.data.childsubcat]  
+  console.log(res.data)
 }
 
 import { addStore } from "@/stores/data/add";
@@ -76,36 +157,46 @@ const router = useRouter()
 
 watch(locale,
   () => {
-    get_data()
+    if (route.query?.subcategory){
+      get_sub_filter(route.query?.subcategory)
+    }    
   }
 )
 
-const clear_filter = () => {
-  query_list.value = {
-    category: route.query.category
+watch(route,()=>{
+  if (route.query?.subcategory){
+    console.log(route.query)
+    get_sub_filter(route.query?.subcategory)
+  } else {
+    childsubcats.value = []
+    atributs.value = []
   }
-  router.push({name:'notices', query: {...query_list.value}})
-  store.all_notice({
-      search: {...query_list.value},
-      limit: 12,
-      page: page.value
+
+
+
+  console.log(subcategories.value,route.query)
+  query_list.value = {...route.query}
+  get_data()
+})
+
+const get_data = async () => {
+  if (route.query?.category){    
+    get_category(route.query?.category)
+  }
+  await store.all_notice({
+    search: {...query_list.value},
+    limit: 12,
+    page: page.value
   })
+  no_notice.value = true  
 }
 
-const get_data = () => {
-  if (route.query){
-    query_list.value = {...route.query, ...query_list.value}
-    router.push({name:'notices', query: query_list.value})
-    get_category(route.query?.category)
-    store.all_notice({
-      search: {...route.query, ...query_list.value},
-      limit: 12,
-      page: page.value
-    })
-  }
-}
 
 onMounted(()=>{
+  query_list.value = {...route.query}
+  if (route.query?.subcategory){
+    get_sub_filter(route.query?.subcategory)
+  }
   get_data()
 })
 
