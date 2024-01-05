@@ -27,6 +27,6 @@ onMounted(()=>{
 
     .profile {
         padding-bottom: 100px;
-        background-color: rgba($green,0.2);
+        // background-color: rgba($green,0.2);
     }
 </style>

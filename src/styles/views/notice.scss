@@ -64,3 +64,18 @@
     }
 
 }
+
+
+
+@media (max-width:600px){
+    .notice {
+        .head {
+            flex-direction: column;
+            align-items: flex-start;
+            .title {
+                word-wrap: break-word;
+                word-break: break-word;
+            }
+        }
+    }
+}

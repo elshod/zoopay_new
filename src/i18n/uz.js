@@ -41,4 +41,35 @@ export const uz = {
         childsubcats:'Toifalar',
         atributs:'Xususiyatlar'
     },
+
+    add: {
+        pagetitle:"Yangi e'lon qo'shish",
+        category_title: "Bo'limni tanlang",
+        category_text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
+        subcategory_title:"Turkumni tanlang",
+        subcategory_text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
+        childsubcat_title:"Toifani tanlang",
+        childsubcat_text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
+        text: "E'lon sarlavhasi va batafsil tasvifini yozing",
+        info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
+
+        title: "E`lon sarlavhasi",
+        editor: "E`lon matni",
+        price_title:"Narh va manzil ma'lumotlarini kiriting",
+        price_text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
+
+        priceType:"Sotuv turi",
+        addType:"E'lon turi",
+        statusType:"Mahsulot holati",
+        price:"Narhi",
+        address:"Manzil",
+        images_title:"E'lonning rasmlarini kiriting",
+        images_text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
+        atributs_title:"E'lon xususiyatlari",
+        atributs_text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
+        cancel:"Bekor qilish",
+        save:"Saqlash",
+        max_file_size:"Maksimal fayl hajmi (500kb)"
+
+    }
 }

@@ -80,6 +80,8 @@ export const atributStore = defineStore('atributStore', () => {
       url: 'atribut',
       data,
     });
+
+    console.log(res.data) 
     atributs.value = [
       ...atributs.value.map((atribut) => {
         if (atribut._id == res.data._id) return { ...res.data };
