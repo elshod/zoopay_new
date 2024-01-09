@@ -89,12 +89,27 @@ export const userStore = defineStore('userStore',()=>{
         console.log(res.data)
     }
 
+    const about_me = async () => {
+        return await api.get({
+            url:'user/my'
+        })
+    }
+
+    const user_update = async data => {
+        return await api.put({
+            url: 'user',
+            data
+        })
+    }
+
 
 
     return {
         user,
         person,
 
+        user_update,
+        about_me,
         checkUser,
         reg,
         login,

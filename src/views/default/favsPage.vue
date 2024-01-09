@@ -2,13 +2,13 @@
     <div class="last q-my-xl">
         <div class="container">
             <div v-if="list.length > 0">
-                <h4 class="text-center q-mb-xl">Tanlanganlar ro'yhati</h4>
+                <h4 class="text-center q-mb-xl">{{t('notice.favs')}}</h4>
                 <card-list :list="list" page='fav' @changeList="handleChange" />
             </div>
             <div v-else class="text-center">
-                <h4 class="q-mb-xl">Xozircha tanlanganlar yo'q</h4>
-                <h5 class="q-mb-xl">E'lonlar sahifasiga o'tib tanlashingiz mumkin</h5>
-                <q-btn icon="home" label="Bosh sahifa" to="/" unelevated color="green" />
+                <h4 class="q-mb-xl">{{t('user.favsNo')}}</h4>
+                <h5 class="q-mb-xl">{{t('user.favsText')}}</h5>
+                <q-btn icon="home" :label="t('home.homepage')" to="/" unelevated color="green" />
             </div>
         </div>
     </div>
@@ -21,6 +21,8 @@ import { addStore } from '@/stores/data/add'
 import cardList from '@/components/card/card-list.vue'
 const add_store = addStore()
 
+import { useI18n } from 'vue-i18n'
+const {t} = useI18n()
 
 const list = ref([])
 

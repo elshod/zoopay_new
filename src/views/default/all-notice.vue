@@ -94,7 +94,7 @@
         <div class="col-12 col-md-8" >
           <card-list :list="adds" v-if="adds.length > 0" :limit_class="'col-md-4'"/>
           <div class="row text-center" v-if="adds.length == 0 && no_notice">
-            <h3>Xozircha bu bo'limda e'lonlar yo'q</h3>
+            <h3>{{t('notice.nonotice')}}</h3>
           </div>
         </div>
         
@@ -160,6 +160,10 @@ watch(locale,
     if (route.query?.subcategory){
       get_sub_filter(route.query?.subcategory)
     }    
+    if (route.query?.category){
+      console.log(route.query);
+      get_category(route.query?.category)
+    }
   }
 )
 
@@ -171,6 +175,7 @@ watch(route,()=>{
     childsubcats.value = []
     atributs.value = []
   }
+  
 
 
 

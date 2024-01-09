@@ -10,7 +10,9 @@
           {{ props.row.index }}
         </q-td>
         <q-td :auto-width="true" key="title" :props="props">
-          {{ props.row.title }}
+          <div v-for="atr of props.row.atributs" :key="atr._id">
+            {{atr.language}}: {{atr.title}}
+          </div>
         </q-td>
         <q-td :auto-width="true" key="input" :props="props">
           {{ props.row.input }}
@@ -21,10 +23,7 @@
         <q-td key="subcategory" :props="props">
           {{ props.row.subcategory }}
         </q-td>
-        <q-td key="createdAt" :props="props">
-          {{ convertDate(props.row.createdAt) }}
-        </q-td>
-        <q-td key="createdAt" :props="props">
+        <q-td key="status" :props="props">
           <q-btn @click="changeStatus(props.row._id)" size="10px" :icon="props.row.status == 1 ? 'done' : 'close'"
             unelevated :color="props.row.status == 1 ? 'green-10' : 'yellow-10'" />
         </q-td>
@@ -152,29 +151,22 @@ const columns = [
   },
   {
     name: 'subcategory',
-    label: 'Toifa',
+    label: 'Turkum',
     align: 'left',
-  },
-  {
-    name: 'createdAt',
-    label: 'Yaratilgan vaqti',
-    field: 'createdAt',
-    align: 'left',
-    headerStyle: 'width: 200px',
   },
   {
     name: 'status',
     label: 'Holati',
     field: 'status',
     align: 'left',
-    headerStyle: 'width: 200px',
+    headerStyle: 'width: 100px',
   },
   {
     name: 'btns',
     label: '',
     field: 'btns',
     align: 'left',
-    headerStyle: 'width: 200px',
+    headerStyle: 'width: 100px',
   }
 ]
 

@@ -14,8 +14,8 @@ import atributTable from '@/components/dashboard/atribut/atribut-table.vue'
 import atributDialog from '@/components/dashboard/atribut/atribut-dialog.vue'
 import { atributStore } from '@/stores/data/atribut'
 
-import { subcategoryStore } from '@/stores/data/subcategory'
-const subcategory_store = subcategoryStore()
+import {categoryStore} from '@/stores/data/category'
+const category_store = categoryStore()
 
 import { storeToRefs } from 'pinia'
 
@@ -49,8 +49,8 @@ const close = () => {
 
 onMounted(() => {
   page_store.set_page_title(title.value)
-  store.get_all_atributs()
-  subcategory_store.get_all_subcategorys({ limit: 0 })
+  store.get_all_atributs()  
+  category_store.get_categorys({limit:0})
 })
 
 </script>

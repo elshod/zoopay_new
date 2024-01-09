@@ -8,7 +8,8 @@ export const uz = {
     home: {
         category: {
             title: 'Bo`limlar'
-        }
+        },
+        homepage:"Bosh sahifa"
     },
     utils: {
         currency:'so`m'
@@ -20,7 +21,8 @@ export const uz = {
         call:'Murojat uchun',
         address:'Manzil',
         user_notices:'Muallifning boshqa e`lonlari',
-        others:'Boshqa e`lonlar'
+        others:'Boshqa e`lonlar',
+        nonotice:'Xozircha bu bo`limda e`lonlar yo`q'
     },
 
     
@@ -71,5 +73,29 @@ export const uz = {
         save:"Saqlash",
         max_file_size:"Maksimal fayl hajmi (500kb)"
 
+    },
+
+    user: {
+        notices: "Mening e`lonlarim",
+        settings:'Sozlamalar',
+        profile: "Profilim",
+        notices:"E`lonlarim",
+        favs:"Tanlanganlar",
+        logout:"Tizimdan chiqish",
+        confirmText:"Tizimdan chiqmoqchimisiz?",
+        favsNo:"Xozircha tanlanganlar yo'q",
+        favsText:"E'lonlar sahifasiga o'tib tanlashingiz mumkin",
+        views:"Ko`rilganlar soni",
+        name: "Foydalanuvchi ism-familiyasi",
+        password: "Yangi mahfiy kalit",
+        repassword: "Yangi mahfiy kalitni qayta yozing",
+        
+    },
+
+    msg: {
+        required: "Maydon bo`sh bo`lmasin",
+        newpassword:"Yangi mahfiy kalit qayta yozilgan bilan bir xil emas",
+        updated:"Ma`lumotlar yangilandi",
+        minpassword:"Mahfiy kalit kamida 5 ta simvol bo`lsin"
     }
 }

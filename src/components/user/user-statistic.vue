@@ -2,14 +2,14 @@
     <div class="row q-col-gutter-lg">
         <div class="col-md-6 col-6">
             <box-statistic :box="{
-                title:'E`lonlar',
+                title:t('user.notices'),
                 value: person?.addCount || 0,
                 icon: 'checklist'
             }"/>
         </div>
         <div class="col-md-6 col-6">
             <box-statistic :box="{
-                title:'Ko`rilgan soni',
+                title:t('user.views'),
                 value: person?.addWiewCount || 0,
                 icon: 'visibility'
             }"/>
@@ -22,7 +22,8 @@ import { ref } from 'vue';
 import boxStatistic from './box-statistic.vue'
 const props = defineProps(['person'])
 
-console.log(props.person)
+import { useI18n } from 'vue-i18n'
+const {t} = useI18n()
 
 const list = ref([
     {

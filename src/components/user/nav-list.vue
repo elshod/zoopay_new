@@ -2,31 +2,31 @@
     <nav>
         <div class="container">
             <router-link to="/user/" exact>
-                <span class="title" v-if="!mobile">Profilim</span>
+                <span class="title" v-if="!mobile">{{t('user.profile')}}</span>
                 <q-icon name="person" size="18px" v-else class="icon"/>
             </router-link>
             <router-link to="/user/adds">
-                <span class="title" v-if="!mobile">E'lonlarim</span>
+                <span class="title" v-if="!mobile">{{t('user.notices')}}</span>
                 <q-icon name="toc" size="18px" v-else class="icon"/>                
             </router-link>
             <router-link to="/user/fav">
-                <span class="title" v-if="!mobile">Tanlaganlar</span>
+                <span class="title" v-if="!mobile">{{t('user.favs')}}</span>
                 <q-icon name="star" size="18px" v-else class="icon"/>
             </router-link>
             <router-link to="/user/settings">
-                <span class="title" v-if="!mobile">Sozlamalar</span>
+                <span class="title" v-if="!mobile">{{t('user.settings')}}</span>
                 <q-icon name="settings" size="18px" v-else class="icon"/>                
             </router-link>
             <q-btn 
-                :label="!mobile ? 'Tizimdan chiqish' : ''" 
+                :label="!mobile ? t('user.logout') : ''" 
                 @click="handleOpen" 
-                :icon="mobile ? 'logout' : ''"
+                icon="logout"
                 unelevated class="logout" text-color="red"/>
         </div>
     </nav>
     <confirm-action 
         :toggle="option.toggle"
-        title="Tizimdan chiqmoqchimisiz?"
+        :title="t('user.confirmText')"
         @confirm="handleConfirm"
         />
 </template>
@@ -35,6 +35,9 @@
 import {onMounted, ref} from 'vue'
 import cookies from 'vue-cookies'
 import { useRouter } from 'vue-router'
+
+import { useI18n } from 'vue-i18n'
+const {t} = useI18n()
 
 const option = ref({
     toggle: false

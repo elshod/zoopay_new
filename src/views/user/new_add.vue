@@ -437,6 +437,7 @@ watch(locale,
 
 onMounted(() => {
     category_store.get_categorys({
+        language: locale.value,
         limit: 0
     })
     type_list()
