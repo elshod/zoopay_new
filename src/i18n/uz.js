@@ -22,7 +22,11 @@ export const uz = {
         address:'Manzil',
         user_notices:'Muallifning boshqa e`lonlari',
         others:'Boshqa e`lonlar',
-        nonotice:'Xozircha bu bo`limda e`lonlar yo`q'
+        nonotice:'Xozircha bu bo`limda e`lonlar yo`q',
+        message:"Xabaringizni yozing",
+        message_btn: "Xabar yozish",
+        success_message:"Xabar jo`natildi",
+        error_message:"Xabar jo`natishda xatolik bo`ldi"
     },
 
     
@@ -64,15 +68,17 @@ export const uz = {
         addType:"E'lon turi",
         statusType:"Mahsulot holati",
         price:"Narhi",
-        address:"Manzil",
+        address:"Manzil: ko`cha, uy, xonadon",
         images_title:"E'lonning rasmlarini kiriting",
         images_text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
         atributs_title:"E'lon xususiyatlari",
         atributs_text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
         cancel:"Bekor qilish",
         save:"Saqlash",
-        max_file_size:"Maksimal fayl hajmi (500kb)"
-
+        max_file_size:"Maksimal fayl hajmi (500kb)",
+        region:'Viloyatni tanlang',
+        district: 'Shahar/tumanni tanlang',
+        status_warning: 'Bu e`lon xozircha moderatsiyadan o`tmagan',
     },
 
     user: {
@@ -89,7 +95,12 @@ export const uz = {
         name: "Foydalanuvchi ism-familiyasi",
         password: "Yangi mahfiy kalit",
         repassword: "Yangi mahfiy kalitni qayta yozing",
-        
+        favorites:'Saralangan e`lonlar',
+        allSummaAdds: 'Barcha e`lonlar hisobi(so`m)',
+        allSummaAddsDollar: 'Barcha e`lonlar hisobi($)',
+        msgs:"Xabarlar",
+        no_entry: "Xabar jo'natish uchun tizimga kiring",
+        entry_btn: "Tizimga kirish"
     },
 
     msg: {

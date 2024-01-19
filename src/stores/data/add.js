@@ -14,6 +14,7 @@ export const addStore = defineStore('addStore', () => {
   const api = apiStore();
 
   const all_notice = async params => {
+    adds.value = []
     let res = await api.get({
       url: 'add',
       params
@@ -150,9 +151,10 @@ export const addStore = defineStore('addStore', () => {
     })
   }
 
-  const view_add = async (id) => {
+  const view_add = async (id,params) => {
     return await api.get({
-      url: `add/view/${id}`
+      url: `add/view/${id}`,
+      params
     })
   }
 

@@ -77,6 +77,11 @@ const router = createRouter({
           component: () => import('@/views/user/user-adds.vue')
         },
         {
+          path:'msg',
+          name:'msg',
+          component: () => import('@/views/user/user-message.vue')
+        },
+        {
           path:'settings',
           name:'userSettings',
           component: () => import('@/views/user/user-settings.vue')

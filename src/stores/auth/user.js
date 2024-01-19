@@ -19,6 +19,7 @@ export const userStore = defineStore('userStore',()=>{
             let res = await api.get({
                 url: 'auth/checkuser'
             })
+            console.log(res.data)
             user.value = {...res.data}
             if (res.data.role !== role){
                 if (res.data.role == 'user'){
@@ -34,6 +35,12 @@ export const userStore = defineStore('userStore',()=>{
         }
     }
 
+    const check = async () => {
+        return await api.get({
+            url: 'auth/check'
+        })
+    }
+
     const login = async data => {
         let res = await api.post({
             url: 'auth/login',
@@ -45,7 +52,7 @@ export const userStore = defineStore('userStore',()=>{
             
             cookies.set('zoopay-user',{...res.data.user})
             cookies.set('zoopay-token',res.data.token)
-            setTimeout(()=>{
+            setTimeout(async ()=>{
                 $q.notify({
                     message: 'Xush kelibsiz',
                     color: 'green-8',
@@ -55,6 +62,10 @@ export const userStore = defineStore('userStore',()=>{
                     return router.push(data.from)
                 }
                 if (res.data.user.role == 'user'){
+                    let r = await api.get({
+                        url:'add/me'
+                    })
+                    person.value = {...r.data}
                     return router.push('/user')
                 } 
                 if (res.data.user.role == 'admin'){
@@ -107,7 +118,7 @@ export const userStore = defineStore('userStore',()=>{
     return {
         user,
         person,
-
+        check,
         user_update,
         about_me,
         checkUser,

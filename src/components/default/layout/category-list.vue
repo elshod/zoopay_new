@@ -1,9 +1,11 @@
 <template>
-    <div class="category">
-        <div class="container">
-            <div class="title">{{  t('home.category.title') }}</div>
+    <div :class="`category ${type ? 'notice_page' : ''}`">
+        <div :class="`${type ? 'category__swipe' : 'container'}`">
+            <div class="title" v-if="!type">{{  t('home.category.title') }}</div>
             <div class="category__list">
-                <div class="category__col" v-for="cat of categorys" :key="cat._id">
+                <div 
+                    :class="`category__col ${current_category == cat._id ? 'active' : ''}`" 
+                    v-for="cat of categorys" :key="cat._id">
                     <router-link 
                     :to="{name:'notices', query: { category: cat._id }}"  
                     :class="`box ${cat_id == cat._id ? 'active' : ''}`">
@@ -25,12 +27,18 @@ import { storeToRefs } from 'pinia'
 import { onMounted, ref, watch } from 'vue'
 import { url } from '@/stores/utils/env'
 import subcategoryList from './subcategory-list.vue'
-
+const props = defineProps({
+    type: {
+        type: Boolean,
+        default: false
+    }
+})
 import { useI18n } from 'vue-i18n'
+import { useRoute } from 'vue-router'
 const {t,locale} = useI18n()
 
 const store = categoryStore()
-
+const current_category = ref('')
 const { categorys } = storeToRefs(store)
 
 const subcats = ref([])
@@ -42,6 +50,16 @@ const getSubcategory = async (id) => {
     console.log(res.data)
     subcats.value = [...res.data]
 }
+
+const route = useRoute()
+
+watch(route, 
+    () => {
+        if (route.query?.category){
+            current_category.value = route.query.category
+        }
+    }
+)
 
 watch(locale,
     () => {
@@ -58,7 +76,9 @@ const get_data = () => {
 
 onMounted(() => {
     get_data()
-    
+    if (route.query?.category){
+        current_category.value = route.query.category
+    }
 })
 
 </script>

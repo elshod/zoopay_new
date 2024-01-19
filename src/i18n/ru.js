@@ -22,7 +22,11 @@ export const ru = {
         address:'Адрес',
         user_notices:'Другие объявление автора',
         others:'Другие объявление',
-        nonotice:'Пока объявление по этому запросу нету'
+        nonotice:'Пока объявление по этому запросу нету',
+        message:"Напишите сообщение",
+        message_btn: "Отправить сообщение",
+        success_message:"Сообщение отправлено",
+        error_message:"При отправки сообщение было ощибка"
     },
 
     footer: {
@@ -68,8 +72,10 @@ export const ru = {
         atributs_text:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque quo et cupiditate sit tempore, blanditiis reprehenderit nobis consequatur natus illum recusandae odio mollitia ex debitis voluptate iure optio facere.",
         cancel:"Отменить",
         save:"Сохранить",
-        max_file_size:"Максимальный размер файла (500kb)"
-
+        max_file_size:"Максимальный размер файла (500kb)",
+        region:'Выберите область',
+        district: 'Выберите город/район',
+        status_warning: 'Объявление еще не одобрено',
     },
 
     user: {
@@ -85,6 +91,13 @@ export const ru = {
         name: "Имя-фамилия пользователя",
         password: "Новый пароль",
         repassword: "Еще раз введите новый пароль",
+        favorites:'Избранные',
+        allSummaAdds: 'Сумма все объявление (сум)',
+        allSummaAddsDollar: 'Сумма все объявление ($)',
+        msgs:"Сообщение",
+        no_entry: "Пройдите авторизации для отправки сообщение",
+        entry_btn: "Авторизация",
+        
     },
 
     msg: {

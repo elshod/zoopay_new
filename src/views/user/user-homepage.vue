@@ -8,7 +8,6 @@
                         <div class="name">{{person.name}}</div>
                         <div class="phone">{{person.login}}</div>
                     </div>
-
                 </div>
                 <div class="col-12 col-md-8">
                     <userStatistic :person="person"/>
@@ -26,8 +25,8 @@ import { storeToRefs } from 'pinia';
 const store = userStore()
 const {person} = storeToRefs(store)
 
-onMounted(()=>{
-    store.info_me()
+onMounted(async ()=>{
+    await store.info_me()
 })
 
 </script>

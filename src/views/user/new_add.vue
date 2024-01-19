@@ -117,6 +117,33 @@
                                     text-color="black" :options="prices" />
                             </div>
                         </div>
+                        <div class="row q-col-gutter-lg q-mt-xs">
+                            <div class="col">
+                                <q-select 
+                                    outlined 
+                                    map-options
+                                    emit-value
+                                    v-model="data.region" 
+                                    :options="regions" 
+                                    option-label="name"
+                                    option-value="_id"
+                                    :label="t('add.region')"
+                                    @update:model-value="get_districts"
+                                    />
+                            </div>
+                            <div class="col" v-if="districts.length > 0">
+                                <q-select 
+                                    outlined 
+                                    map-options
+                                    emit-value
+                                    option-label="name"
+                                    option-value="_id"
+                                    v-model="data.district" 
+                                    :options="districts" 
+                                    :label="t('add.district')"
+                                    />
+                            </div>
+                        </div>
                         <q-input 
                             v-model="data.address" 
                             outlined :label="t('add.address')" 
@@ -414,7 +441,16 @@ const type_list = () => {
 }
 
 
+import {placeStore} from '@/stores/data/place'
+const place_store = placeStore()
+const {regions,districts} = storeToRefs(place_store)
 
+const get_districts = async () => {
+    if (data.value.region){
+        data.value.district = ''
+        await place_store.get_districts({region:data.value.region}) 
+    }
+}
 
 watch(locale,
     () => {
@@ -435,11 +471,12 @@ watch(locale,
 )
 
 
-onMounted(() => {
+onMounted(async () => {
     category_store.get_categorys({
         language: locale.value,
         limit: 0
     })
+    await place_store.get_regions()
     type_list()
 })
 

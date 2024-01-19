@@ -9,6 +9,10 @@
                 <span class="title" v-if="!mobile">{{t('user.notices')}}</span>
                 <q-icon name="toc" size="18px" v-else class="icon"/>                
             </router-link>
+            <router-link to="/user/msg">
+                <span class="title" v-if="!mobile">{{t('user.msgs')}}</span>
+                <q-icon name="message" size="18px" v-else class="icon"/>                
+            </router-link>
             <router-link to="/user/fav">
                 <span class="title" v-if="!mobile">{{t('user.favs')}}</span>
                 <q-icon name="star" size="18px" v-else class="icon"/>

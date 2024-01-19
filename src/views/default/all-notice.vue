@@ -1,5 +1,6 @@
 <template>
   <div class="notices">
+    <categoryList :type="true"/>
     <div class="container q-mb-lg">
       <h4 class="title text-center q-mt-lg">{{ title }}</h4>
       <div class="row q-col-gutter-md" >
@@ -109,6 +110,8 @@ import { onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import cardList from '@/components/card/card-list.vue'
+
+import categoryList from '@/components/default/layout/category-list.vue'
 
 import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()

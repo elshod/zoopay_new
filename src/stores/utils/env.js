@@ -1,4 +1,5 @@
 export const url = 'https://zoopay.bookblogs.uz';
+export const wss = 'wss://zoopay.bookblogs.uz';
 
 export const statusList = [
   {

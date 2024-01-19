@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <q-icon :name="box.icon" class="icon" />
+        <q-icon :name="box.icon" color="green-10" class="icon" />
         <div class="title">{{ box.title }}</div>
         <div class="value">{{ box.value }}</div>
         <div class="desc" v-if="box.desc">{{ box.desc }}</div>
@@ -14,6 +14,7 @@ defineProps(['box'])
 <style lang="scss" scoped>
     .box {
         background-color: #fff;
+        border:1px solid #e4e4e4;
         padding: 15px;
         border-radius: 15px;
         position: relative;
@@ -34,6 +35,7 @@ defineProps(['box'])
         }
         .title {
             font-size: 18px;
+            color: #3e3e3e;
             
         }
     }

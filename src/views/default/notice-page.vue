@@ -16,18 +16,31 @@
             </div>
             <div class="info row q-col-gutter-md">
                 <div class="col-12 col-md-8">
-                    <img v-if="card.images" :src="`${url}/${card.images?.at(0)}`" alt="">
+                    <div class="slider" v-if="card.images">
+                        <Splide :options="{ 
+                            type:'loop',
+                            rewind: true,
+                            perPage:1,
+                        }">
+                            <SplideSlide v-for="img of card.images" :key="img._id">
+                                <img :src="`${url}/${img}`" alt="">
+                            </SplideSlide>
+                        </Splide>
+                    </div>
 
                     <div class="box">
                         <div class="attrs">
                             <div class="att">
                                 {{card.category}}
                             </div>
+                            <div class="att" v-if="card.subcategory">
+                                {{card.subcategory}}
+                            </div>
                             <div class="att" 
                                 v-for="attr of card.atributs"
                                 :key="attr._id"
                             >   
-                                {{attr.id?.title}}:
+                                {{attr.id}}:
                                 <b>{{attr.value}}</b>                                
                             </div>
                         </div>
@@ -35,10 +48,18 @@
                         <div class="text" v-html="card.text">
 
                         </div>
+
+                        
+
+
+                    </div>
+                    <div class="box">                        
+                        <noticeMessage :id="card?._id" :user="card?.user?._id"/>
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="author">
+                        
                         <div class="stat">
                             <span>
                                 <q-icon name="visibility"/>
@@ -62,9 +83,10 @@
                         unelevated
                         @click="callMe()"
                         text-color="white"/>
-                        <p class="q-mt-sm">
+                        <p class="q-mt-sm">                            
                             <b>{{ t('notice.address') }}</b>
                         </p>
+                        {{card.region?.name}} <br> {{card.district?.name}} <br>
                         {{card.address}}
                     </div>
                     <div class="author q-mt-lg" v-if="card.userAdds?.length > 0">
@@ -108,6 +130,7 @@
 </template>
 
 <script setup>
+import noticeMessage from '@/components/chat/notice-message.vue'
 import cardBox from '@/components/card/card-box.vue'
 import {convertDate} from '@/stores/utils/func'
 import { Splide, SplideSlide } from '@splidejs/vue-splide';
@@ -120,18 +143,17 @@ import {url} from '@/stores/utils/env'
 const store = addStore()
 
 import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
+import { storeToRefs } from 'pinia';
+const { t, locale } = useI18n()
 
 const id = ref('')
 const card = ref({})
 const route = useRoute()
 
 const getData = async () => {
-    console.log(route.params)
     if (route.params?.id){
         id.value = route.params.id
-        let res = await store.view_add(id.value)
-        console.log(res.data)
+        let res = await store.view_add(id.value,{language:locale.value})
         card.value = {...res.data}
         card.value.sameCatAdds = card.value.sameCatAdds.map(adds => {
             adds.createdAt = convertDate(adds.createdAt)
@@ -153,6 +175,12 @@ const callMe = () => {
 
 watch(
     () => route.params,
+    () => {
+        getData()
+    }
+)
+
+watch(locale,
     () => {
         getData()
     }

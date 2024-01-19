@@ -1,8 +1,16 @@
 <template>
   <div class="card">
     <div class="img">
-        <q-btn 
-          
+      <q-btn 
+        icon="info"
+        round
+        class="status_warning"
+        v-if="card.status == 0"
+        color="orange"
+        text-color="black"
+        @click="show_info"
+      />
+        <q-btn           
           icon="favorite_border"
           round
           class="favorite"
@@ -22,7 +30,7 @@
           {{card.title}}
         </router-link>
         <div class="price">{{card.price?.toLocaleString() || 0}} {{card.priceType == 1 ? t('utils.currency') : '$'}}</div>
-        <div class="location">{{card.address}}</div>
+        <div class="location">{{card.region?.name}} {{card.district?.name}} {{card.address}}</div>
         <div class="date">{{card.createdAt}}</div>
     </div>
   </div>
@@ -45,6 +53,13 @@ const { t } = useI18n()
 const props = defineProps(['card'])
 const emits = defineEmits('changeList')
 const toggle = ref(false)
+
+const show_info = () => {
+  $q.notify({
+    message: t('add.status_warning'),
+    color: 'orange-10'
+  })
+}
 
 const add_fav = id => {    
   page_store.set_favs(id)
