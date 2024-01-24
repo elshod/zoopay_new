@@ -19,7 +19,7 @@ export const userStore = defineStore('userStore',()=>{
             let res = await api.get({
                 url: 'auth/checkuser'
             })
-            console.log(res.data)
+            // console.log(res.data)
             user.value = {...res.data}
             if (res.data.role !== role){
                 if (res.data.role == 'user'){

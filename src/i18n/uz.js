@@ -87,7 +87,7 @@ export const uz = {
         profile: "Profilim",
         notices:"E`lonlarim",
         favs:"Tanlanganlar",
-        logout:"Tizimdan chiqish",
+        logout:"Akkauntdan chiqish",
         confirmText:"Tizimdan chiqmoqchimisiz?",
         favsNo:"Xozircha tanlanganlar yo'q",
         favsText:"E'lonlar sahifasiga o'tib tanlashingiz mumkin",
@@ -100,7 +100,8 @@ export const uz = {
         allSummaAddsDollar: 'Barcha e`lonlar hisobi($)',
         msgs:"Xabarlar",
         no_entry: "Xabar jo'natish uchun tizimga kiring",
-        entry_btn: "Tizimga kirish"
+        entry_btn: "Tizimga kirish",
+        me:'Men'
     },
 
     msg: {

@@ -45,17 +45,9 @@
                             </div>
                         </div>
                         <h6>{{ t('notice.text') }}</h6>
-                        <div class="text" v-html="card.text">
-
-                        </div>
-
-                        
-
-
+                        <div class="text" v-html="card.text"/>
                     </div>
-                    <div class="box">                        
-                        <noticeMessage :id="card?._id" :user="card?.user?._id"/>
-                    </div>
+                    <noticeMessage :id="card?._id || null" :owner="card?.user?._id || null"/>
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="author">
@@ -143,8 +135,8 @@ import {url} from '@/stores/utils/env'
 const store = addStore()
 
 import { useI18n } from 'vue-i18n'
-import { storeToRefs } from 'pinia';
 const { t, locale } = useI18n()
+import { storeToRefs } from 'pinia';
 
 const id = ref('')
 const card = ref({})

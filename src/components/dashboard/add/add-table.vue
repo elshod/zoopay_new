@@ -40,7 +40,7 @@
           {{ convertDate(props.row.createdAt) }}
         </q-td>
         <q-td key="createdAt" :props="props">
-          <q-btn @click="changeStatus(props.row._id)" size="10px" :icon="props.row.status == 1 ? 'done' : 'close'"
+          <q-btn @click="changeStatus(props.row._id,props.row.status == 1 ? 0 : 1)" size="10px" :icon="props.row.status == 1 ? 'done' : 'close'"
             unelevated :color="props.row.status == 1 ? 'green-10' : 'yellow-10'" />
         </q-td>
         <q-td key="btns" :props="props">
@@ -104,8 +104,8 @@ const emits = defineEmits(['edit'])
 
 const store = addStore()
 const { adds, adds_count } = storeToRefs(store)
-const changeStatus = (_id) => {
-  store.change_status(_id)
+const changeStatus = (id,status) => {
+  store.change_status({id,status})
 }
 
 const confirm = ref(false)

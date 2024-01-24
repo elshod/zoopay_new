@@ -112,8 +112,8 @@ export const addStore = defineStore('addStore', () => {
     });
   };
 
-  const change_status = async (id) => {
-    await api.get({ url: `add/change/${id}` });
+  const change_status = async ({id,status,info}) => {
+    await api.post({ url: `add/change/${id}`, data: {status,info}});
     adds.value = [
       ...adds.value.map((add) => {
         if (add._id == id)

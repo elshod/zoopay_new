@@ -22,3 +22,11 @@ a {
     min-height: 100vh;
 }
 
+.q-item.active {
+    background-color: $green;
+    color: #fff;
+    .q-item__section,
+    .q-item__label{
+        color: #fff;
+    }
+}

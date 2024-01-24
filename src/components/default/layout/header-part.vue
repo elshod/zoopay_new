@@ -15,7 +15,7 @@
             <q-badge v-if="favs.length > 0" floating color="red">{{ favs.length }}</q-badge>
           </q-btn>
 
-          <q-btn flat class="message" color="white" icon="message">
+          <q-btn flat to="/user/msg" class="message" color="white" icon="message">
             <q-badge floating color="red">22</q-badge>
           </q-btn>
 
@@ -62,6 +62,7 @@ watch(locale,
     console.log(locale.value)
   }
 )
+
 
 
 const fav_count = ref(0)
